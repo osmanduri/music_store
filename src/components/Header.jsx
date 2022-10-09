@@ -44,8 +44,8 @@ export default function Header() {
                     </div>
                 </div>
                 <div className='center_text_defile'>
-                    <p className='txt t1'>Ouvert toutes la semaine du Lundi au Dimanche de 8h à 20h ! Vous pouvez nous joindre au 0627928252 !&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                    <p className='txt t1'>Ouvert toutes la semaine du Lundi au Dimanche de 8h à 20h ! Vous pouvez nous joindre au 0627928252 !&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p className='txt t1'>Ouvert toute la semaine du Lundi au Dimanche de 8h à 20h ! Vous pouvez nous joindre au 0627928252 !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p className='txt t1'>Ouvert toute la semaine du Lundi au Dimanche de 8h à 20h ! Vous pouvez nous joindre au 0627928252 !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     
                 </div>
                 

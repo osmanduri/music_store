@@ -2,6 +2,7 @@ import React from 'react'
 import fender_home from "../images/guitars/home_fender.jpg"
 import CardsHomeCat from '../components/CardsHomeCat'
 import cards from '../data/cards_home'
+import Populaire from '../components/Home/Populaire'
 
 export default function Home() {
     console.log(cards)
@@ -22,6 +23,7 @@ export default function Home() {
                 })
             }
             </div>
+            <Populaire/>
         </div>
     )
 }

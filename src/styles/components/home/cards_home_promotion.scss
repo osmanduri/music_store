@@ -1,0 +1,93 @@
+.cards_home_promotion_outside {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    >.card_home_promotion {
+        width: 405px;
+        height: 613px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 40px;
+        >.card_home_promotion_inside {
+            >h3 {
+                background: #f0a951;
+                padding: 2px 8px;
+                width: 26%;
+                font-weight: 400;
+                color: white;
+            }
+            width: 90%;
+            height: 90%;
+            //background: red;
+            >img {
+                width: 100%;
+                height: auto;
+            }
+            >.cards_home_promotion_inside_price {
+                position: relative;
+                margin-top: 40px;
+                transition: all 0.5 ease-in-out;
+                width: 100%;
+                height: auto;
+                overflow: hidden;
+                >.cards_home_promotion_inside_price_inside {
+                    width: 100%;
+                    height: 149px;
+                }
+                >.cards_home_promotion_inside_price_ajout_panier {
+                    position: absolute;
+                    color: orange;
+                    z-index: 999;
+                    background: white;
+                    width: 100%;
+                    height: 149px;
+                    transition: all 0.3s ease-in-out;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    >.cards_home_promotion_inside_price_ajout_panier_inside {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        >p {
+                            text-align: center;
+                            width: 50%;
+                            margin: auto;
+                            background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+                            border-radius: 12px;
+                            padding: 14px 20px;
+                            color: white;
+                            cursor: pointer;
+                            &:hover {
+                                background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 100%, #feb400 0%);
+                            }
+                        }
+                        >.quick_full_view {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 50%;
+                            margin: auto;
+                            >img {
+                                width: 30px;
+                                height: 30px;
+                                cursor: pointer;
+                                opacity: 0.4;
+                                transition: all 0.3s ease-in-out;
+                                &:hover {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
