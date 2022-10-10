@@ -12,12 +12,23 @@
         align-items: center;
         margin: 40px;
         >.card_home_promotion_inside {
-            >h3 {
-                background: #f0a951;
-                padding: 2px 8px;
-                width: 26%;
-                font-weight: 400;
-                color: white;
+            >.nouveau_promotion_ {
+                display: flex;
+                >h3 {
+                    background: #f0a951;
+                    padding: 2px 8px;
+                    width: 26%;
+                    font-weight: 400;
+                    color: white;
+                    margin-right: 20px;
+                }
+                >span {
+                    background: #f0a951;
+                    padding: 2px 8px;
+                    width: 26%;
+                    font-weight: 400;
+                    color: white;
+                }
             }
             width: 90%;
             height: 90%;

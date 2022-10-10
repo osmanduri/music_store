@@ -16,7 +16,10 @@ export default function CardsHomePromotion({element, id}) {
     return (
         <div className='card_home_promotion'>
             <div className="card_home_promotion_inside" onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <h3>Nouveau</h3>
+                <div className='nouveau_promotion_'>
+                {element.new && <h3>Nouveau</h3>}
+                {element.promo && <span>Promo !</span>}
+                </div>
                 <img src={clavier} alt="img"/>
                 <div className='cards_home_promotion_inside_price'>
                     <div className='cards_home_promotion_inside_price_inside' >
