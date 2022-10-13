@@ -4,6 +4,9 @@ import eyes from '../../images/cards_home_promotion/eyes.png'
 import detail_product from '../../images/cards_home_promotion/details_product.png'
 
 export default function CardsHomePromotion({element, id}) {
+
+    console.log(Object.keys(element))
+
     const handleMouseEnter = (e) => {
         const panier = document.getElementById('panier'+id)
         panier.style.transform = "translateY(-151px)"
@@ -23,7 +26,7 @@ export default function CardsHomePromotion({element, id}) {
                 <img src={clavier} alt="img"/>
                 <div className='cards_home_promotion_inside_price'>
                     <div className='cards_home_promotion_inside_price_inside' >
-                        <p>{element.prix}€</p><br/>
+                        <p>{Object.keys(element)[2] + ":" + element.prix} €</p><br/>
                         <strong>{element.texte}<br/>Keyboard</strong>
                     </div>
                     <div className='cards_home_promotion_inside_price_ajout_panier' id={"panier"+id}>

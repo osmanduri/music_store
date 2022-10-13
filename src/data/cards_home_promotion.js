@@ -29,6 +29,22 @@ const cards_home_promotion = [{
         texte: "Cremona SV-130 Premier Novice Violin Outfit..",
         promo: true,
         new: false
+    },
+    {
+        id: 5,
+        img: "sax.webp",
+        prix: "1023,90",
+        texte: "Cremona SV-130 Premier Novice Violin Outfit..",
+        promo: true,
+        new: false
+    },
+    {
+        id: 6,
+        img: "sax.webp",
+        prix: "1023,90",
+        texte: "Cremona SV-130 Premier Novice Violin Outfit..",
+        promo: true,
+        new: false
     }
 
 

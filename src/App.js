@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
+import SingleIntrument from './pages/SingleIntrument';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Navigation/>
         <Routes>
         <Route exact path="/" element={ <Home/> }></Route>
+        <Route exact path="/guitare" element={ <SingleIntrument/> }></Route>
         </Routes>
         </div>
       <Footer/>

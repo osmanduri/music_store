@@ -5,10 +5,6 @@ import product from '../../data/cards_home_promotion'
 export default function Populaire() {
     const [name, setName] = useState('Populaire')
 
-    const style = {
-
-    }
-
     useEffect(() => {
         switch(name){
             case 'Populaire':

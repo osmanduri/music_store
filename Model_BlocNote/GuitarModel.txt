@@ -1,0 +1,19 @@
+Model Guitar:
+x Produis
+
+Remarque: "Attention : dernières pièces disponibles !"
+
+FENDER American Vintage II 1957 Str
+
+Type: Guitare Electrique
+Orientation  : Droitière
+Nombre de frettes : 22
+Taille des frettes : Medium Jumbo
+Nombre de cordes: 6 cordes
+Nombre de micros : 2
+Fabriqué: aux USA
+Poid: 5kg
+Année: 2022
+
+
+

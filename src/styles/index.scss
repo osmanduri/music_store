@@ -17,6 +17,22 @@ a {
     background: #10131c;
 }
 
+.ajouter_panier {
+    >p {
+        text-align: center;
+        width: 30%;
+        margin: auto;
+        background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+        border-radius: 12px;
+        padding: 14px 20px;
+        color: white;
+        cursor: pointer;
+        &:hover {
+            background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 100%, #feb400 0%);
+        }
+    }
+}
+
 @import "./components/header.scss";
 @import "./components/navigation.scss";
 @import './components/home.scss';
@@ -24,3 +40,4 @@ a {
 @import './components/home/populaire.scss';
 @import './components/home/cards_home_promotion.scss';
 @import './components/footer.scss';
+@import './components/singleInstrument.scss';
