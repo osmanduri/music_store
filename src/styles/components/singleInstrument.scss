@@ -2,9 +2,50 @@
     >.single_instrument_inside {
         display: flex;
         justify-content: space-between;
-        >img {
-            background: white;
+
+        >.single_instrument_inside_img{
+            position: relative;
+            >img {
+                position: relative;
+                background: white;
+                width: 600px;
+                height: 600px;
+                object-fit: contain;
+            }
+
+            >.chevron_left{
+                position: absolute;
+                color: rgb(138, 138, 138);
+                top: 290px;
+                left: 0px;
+                z-index: 999;
+                font-size: 50px;
+                cursor: pointer;
+            }
+
+            >.chevron_right{
+                position: absolute;
+                color: rgb(138, 138, 138);
+                top: 290px;
+                right: 0px;
+                z-index: 999;
+                font-size: 50px;
+                cursor: pointer;
+            }
+
+            >.petite_img{
+                margin-top: 20px;
+                >img{
+                    width: 51;
+                    height: 34px;
+                    margin-left: 20px;
+                    cursor: pointer;
+                    object-fit:contain;
+                }
+            }
+
         }
+
         >.caracteristique {
             >p {
                 color: white;
@@ -84,9 +125,16 @@
                     display: flex;
                     align-items: center;
                     margin-top: 30px;
+                    
                     >p {
                         color: rgb(138, 138, 138);
                         font-size: 20px;
+                    }
+
+                    >i{
+                        color: white;
+                        cursor: pointer;
+                        margin-left: 10px;
                     }
                     >input {
                         background: transparent;
@@ -97,8 +145,8 @@
                         //caret-color: transparent;
                         outline: none;
                         color: white;
-                        margin-left: 20px;
                         padding-left: 13px;
+                        margin-left: 10px;
                     }
                     input::-webkit-outer-spin-button,
                     input::-webkit-inner-spin-button {

@@ -7,7 +7,7 @@ export default function Navigation() {
                 <img src={logo} alt="logo"/>
                 <div className='navigation_right'>
                 <ul>
-                    <a href="/" className="cool-link">Guitares</a>
+                    <a href="/guitare" className="cool-link">Guitares</a>
                     <a href="/" className="cool-link">Batteries</a>
                     <a href="/" className="cool-link">Clavier</a>
                     <a href="/" className="cool-link">Microphones</a>

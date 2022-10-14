@@ -1,12 +1,75 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { AiFillPlusCircle } from "@react-icons/all-files/ai/AiFillPlusCircle";
+import { AiFillMinusCircle } from "@react-icons/all-files/ai/AiFillMinusCircle";
+import { HiChevronLeft } from "@react-icons/all-files/hi/HiChevronLeft";
+import { HiChevronRight } from "@react-icons/all-files/hi/HiChevronRight";
+
 
 export default function SingleIntrument() {
+    const [quantiteValue, setQuantiteValue] = useState(0)
+    const [valuePicture, setValuePicture] = useState(1)
+
+    const quantiteIncrease = () => {
+        if(quantiteValue < 5){
+            setQuantiteValue(quantiteValue => quantiteValue + 1)
+        }
+        
+    }
+
+    const quantiteDecrease = () => {
+        
+        if(quantiteValue > 1){
+            setQuantiteValue(quantiteValue => quantiteValue - 1)
+        }      
+    }
+
+    const handleSliderPictureIncrease = () => {
+        console.log(valuePicture)
+        if(valuePicture < 4){
+            setValuePicture(valuePicture => valuePicture + 1)
+        }
+
+        if(valuePicture === 4){
+            setValuePicture(1)
+        }
+            console.log(valuePicture)
+            const p = document.getElementById(`img`+valuePicture)
+            p.style.border = "1px solid red"
+
+
+        
+    }
+
+    const handleSliderPictureDecrease = () => {
+        console.log(valuePicture)
+        if(valuePicture > 1){
+            setValuePicture(valuePicture => valuePicture - 1)
+        }
+
+        if(valuePicture === 1){
+            setValuePicture(4)
+        }
+        const p = document.getElementById(`img`+valuePicture)
+
+        p.style.border = "1px solid red"
+    }
+
     return (
         <div className='single_instrument container_header'>
            <div className='trait_horizontale' style={{marginBottom:"30px", background:"red"}}/>
 
             <div className='single_instrument_inside'>
-            <img src="https://ld-prestashop.template-help.com/prestashop_64882/img/p/4/5/45-tm_large_default.jpg" alt="logo"/>
+            <div className="single_instrument_inside_img">
+                <div onClick={handleSliderPictureDecrease} className="chevron_left"><HiChevronLeft/></div>
+                <img src={require(`../images/guitars/Fender/strat-1957-american-vintage_${valuePicture}.jpg`)} alt="logo"/>
+                <div onClick={handleSliderPictureIncrease} className="chevron_right"><HiChevronRight/></div>
+                <div className="petite_img">
+                    <img onClick={() => setValuePicture(1)} src={require(`../images/guitars/Fender/strat-1957-american-vintage_1.jpg`)} alt="logo" id={"img1"} style={{marginLeft:"0px"}}/>
+                    <img onClick={() => setValuePicture(2)} src={require(`../images/guitars/Fender/strat-1957-american-vintage_2.jpg`)} alt="logo" id={"img2"}/>
+                    <img onClick={() => setValuePicture(3)} src={require(`../images/guitars/Fender/strat-1957-american-vintage_3.jpg`)} alt="logo" id={"img3"}/>
+                    <img onClick={() => setValuePicture(4)} src={require(`../images/guitars/Fender/strat-1957-american-vintage_4.jpg`)} alt="logo" id={"img4"}/>
+                </div>  
+            </div>
             <div className='caracteristique'>
                 <p><span>10</span> produits</p>
                 <h1>Dean V Dave Mustaine Guitar Bolt-on Classic Black</h1>
@@ -43,7 +106,9 @@ export default function SingleIntrument() {
                 </div>
                 <div className='quantite'>
                     <p>Quantité: </p>
-                    <input type="number" placeholder=''/>
+                    <i onClick={quantiteDecrease}><AiFillMinusCircle/></i>
+                    <input type="number" placeholder='' value={quantiteValue} id="quantite"/>
+                    <i onClick={quantiteIncrease}><AiFillPlusCircle/></i>
                 </div>
                 <div className='ajouter_panier'>
                     <p>Ajouter au panier</p>
