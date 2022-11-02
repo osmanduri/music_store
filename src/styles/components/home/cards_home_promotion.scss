@@ -14,20 +14,29 @@
         >.card_home_promotion_inside {
             >.nouveau_promotion_ {
                 display: flex;
+                height: 26px;
                 >h3 {
                     background: #f0a951;
-                    padding: 2px 8px;
-                    width: 26%;
+                    padding: 2px 6px;
+                    width: 20%;
                     font-weight: 400;
                     color: white;
                     margin-right: 20px;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
                 >span {
                     background: #f0a951;
                     padding: 2px 8px;
-                    width: 26%;
+                    width: 20%;
                     font-weight: 400;
                     color: white;
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
             }
             width: 90%;

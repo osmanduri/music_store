@@ -1,13 +1,32 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import { AiFillPlusCircle } from "@react-icons/all-files/ai/AiFillPlusCircle";
 import { AiFillMinusCircle } from "@react-icons/all-files/ai/AiFillMinusCircle";
 import { HiChevronLeft } from "@react-icons/all-files/hi/HiChevronLeft";
 import { HiChevronRight } from "@react-icons/all-files/hi/HiChevronRight";
+import AjouterPanier from '../components/Home/Utils/AjouterPanier';
+import { CgFacebook } from "@react-icons/all-files/cg/CgFacebook";
+import { AiOutlineTwitter } from "@react-icons/all-files/ai/AiOutlineTwitter";
+import { AiOutlineInstagram } from "@react-icons/all-files/ai/AiOutlineInstagram";
+import { AiFillYoutube } from "@react-icons/all-files/ai/AiFillYoutube";
+import CardsSimple from '../components/CardsSimple';
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import "./styles.css";
+
+// import required modules
+import { Pagination, Navigation } from "swiper";
 
 
 export default function SingleIntrument() {
-    const [quantiteValue, setQuantiteValue] = useState(0)
+    const [quantiteValue, setQuantiteValue] = useState(1)
     const [valuePicture, setValuePicture] = useState(1)
+    const [swiperRef, setSwiperRef] = useState(null);
 
     const quantiteIncrease = () => {
         if(quantiteValue < 5){
@@ -32,12 +51,6 @@ export default function SingleIntrument() {
         if(valuePicture === 4){
             setValuePicture(1)
         }
-            console.log(valuePicture)
-            const p = document.getElementById(`img`+valuePicture)
-            p.style.border = "1px solid red"
-
-
-        
     }
 
     const handleSliderPictureDecrease = () => {
@@ -49,14 +62,11 @@ export default function SingleIntrument() {
         if(valuePicture === 1){
             setValuePicture(4)
         }
-        const p = document.getElementById(`img`+valuePicture)
-
-        p.style.border = "1px solid red"
     }
 
     return (
         <div className='single_instrument container_header'>
-           <div className='trait_horizontale' style={{marginBottom:"30px", background:"red"}}/>
+           <div className='trait_horizontale' style={{marginBottom:"30px"}}/>
 
             <div className='single_instrument_inside'>
             <div className="single_instrument_inside_img">
@@ -110,11 +120,64 @@ export default function SingleIntrument() {
                     <input type="number" placeholder='' value={quantiteValue} id="quantite"/>
                     <i onClick={quantiteIncrease}><AiFillPlusCircle/></i>
                 </div>
-                <div className='ajouter_panier'>
-                    <p>Ajouter au panier</p>
+                <div className='ajouter_panier_single_instrument'>
+                    <AjouterPanier/>
                 </div>
+                <div className='trait_horizontale' style={{marginTop:"30px"}}/>
+                <div className='single_instrument_reseaux_sociaux'>
+                <a href="https://www.facebook.com"><CgFacebook/></a><a href="www.facebook.com" style={{marginLeft:"20px"}}><AiOutlineInstagram/></a><a href="www.facebook.com" style={{marginLeft:"20px"}}><AiOutlineTwitter/></a><a href="www.facebook.com" style={{marginLeft:"20px"}}><AiFillYoutube/></a>
+                </div>
+                <div className='trait_horizontale' style={{marginTop:"30px", marginBottom:"60px"}}/>
             </div>
             </div>
+            </div>
+            <h1 className='titre_accessoires'>Accessoires</h1>
+            <div className='cards_simple_outside'>
+                <Swiper
+            onSwiper={setSwiperRef}
+            slidesPerView={4}
+            centeredSlides={false}
+            spaceBetween={30}
+            pagination={{
+            type: "fraction",
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper"
+        >
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            </Swiper>
+            </div>
+            <h1 className='titre_autres_produits'>19 autres produits dans la même catégorie</h1>
+            <div className='cards_simple_outside'>
+                <Swiper
+            onSwiper={setSwiperRef}
+            slidesPerView={4}
+            centeredSlides={false}
+            spaceBetween={30}
+            pagination={{
+            type: "fraction",
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper"
+        >
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            <SwiperSlide><CardsSimple/></SwiperSlide>
+            </Swiper>
             </div>
         </div>
     )

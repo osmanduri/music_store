@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import logo from "../images/logo_navigation/logo1.webp"
 export default function Navigation() {
     return (
         <div className='navigation container_header'>
             <div className='navigation_inside'>
-                <img src={logo} alt="logo"/>
+                <Link to="/"><img src={logo} alt="logo"/></Link>
                 <div className='navigation_right'>
                 <ul>
                     <a href="/guitare" className="cool-link">Guitares</a>

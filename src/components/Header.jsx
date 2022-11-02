@@ -52,7 +52,10 @@ export default function Header() {
                 <div className="header_info_right">
                     <NavLink to="/connexion" exact activeClassName="header-active" className="hover"><span>Se connecter</span></NavLink>
                     <div className="trait_header"></div>
-                    <i><AiOutlineShoppingCart/></i>
+                    <i>
+                        <AiOutlineShoppingCart/>
+                        <p>1</p>
+                    </i>
                 </div> 
             </div>
         </div>

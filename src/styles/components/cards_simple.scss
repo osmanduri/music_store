@@ -1,0 +1,41 @@
+.cards_simple {
+    width: 405px;
+    height: 575px;
+    background: white;
+    >.cards_simple_inside {
+        width: 80%;
+        margin: auto;
+        >img {
+            width: 100%;
+            height: auto;
+            margin-top: 30px;
+        }
+        >p {
+            font-weight: bold;
+            margin-top: 40px;
+            width: 100%;
+            height: 50px;
+        }
+        >.text_span {
+            color: #8a8a8a;
+            height: 50px;
+        }
+        >.cards_simple_price_panier {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            >i {
+                font-size: 30px;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+                &:hover {
+                    color: #fe7600;
+                }
+            }
+            >p {
+                font-size: 16px;
+            }
+        }
+    }
+}

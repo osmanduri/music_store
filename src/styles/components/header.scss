@@ -40,7 +40,7 @@
 
 .header_info_left {
     display: flex;
-    //margin-left: 100px;
+    align-items: center;
     position: relative;
     >p {
         color: white;
@@ -173,7 +173,7 @@
 
 .header_info_right {
     display: flex;
-    //margin-right: 100px;
+    align-items: center;
     a {
         color: white;
         font-size: 15px;
@@ -188,6 +188,7 @@
         cursor: pointer;
     }
     >i {
+        position: relative;
         color: white;
         display: flex;
         justify-content: center;
@@ -196,6 +197,13 @@
         margin-left: 20px;
         transition: all 0.3s ease-in-out;
         cursor: pointer;
+        >p {
+            color: white;
+            position: absolute;
+            font-size: 9px;
+            left: 25px;
+            top: 0px
+        }
         &:hover {
             color: rgb(254, 118, 0);
         }

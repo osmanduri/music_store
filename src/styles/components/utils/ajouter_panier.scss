@@ -1,0 +1,16 @@
+.ajouter_panier_global {
+    >p {
+        text-align: center;
+        width: 200px;
+        height: auto;
+        margin: auto;
+        background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+        border-radius: 25px;
+        padding: 16px 20px;
+        color: white;
+        cursor: pointer;
+        &:hover {
+            background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 100%, #feb400 0%);
+        }
+    }
+}
