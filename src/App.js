@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import SingleIntrument from './pages/SingleIntrument';
+import Drums from './pages/Drums';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
         <Route exact path="/" element={ <Home/> }></Route>
         <Route exact path="/guitare" element={ <SingleIntrument/> }></Route>
+        <Route exact path="/drums" element={ <Drums/> }></Route>
         <Route exact path="/guitare/:id" element={ <SingleIntrument/> }></Route>
         <Route
         path='*'

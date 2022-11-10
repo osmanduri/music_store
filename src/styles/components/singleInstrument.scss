@@ -50,16 +50,19 @@
             }
             >.petite_img {
                 margin-top: 20px;
+                width: 600px;
                 >img {
-                    width: 51;
+                    width: 100px;
                     height: 34px;
                     margin-left: 20px;
                     cursor: pointer;
-                    object-fit: contain;
+                    object-fit:contain;
+                    background: white;
                 }
             }
         }
         >.caracteristique {
+            width: 710px;
             >p {
                 color: white;
                 font-size: 16px;
@@ -80,6 +83,7 @@
                     color: white;
                     font-size: 20px;
                     margin-top: 10px;
+                    text-transform: capitalize;
                     >span {
                         color: rgb(138, 138, 138);
                     }

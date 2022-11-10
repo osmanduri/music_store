@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import logo from "../images/logo_navigation/logo1.webp"
 export default function Navigation() {
     return (
@@ -8,12 +8,12 @@ export default function Navigation() {
                 <Link to="/"><img src={logo} alt="logo"/></Link>
                 <div className='navigation_right'>
                 <ul>
-                    <a href="/guitare" className="cool-link">Guitares</a>
-                    <a href="/" className="cool-link">Batteries</a>
-                    <a href="/" className="cool-link">Clavier</a>
-                    <a href="/" className="cool-link">Microphones</a>
-                    <a href="/" className="cool-link">Home Studio</a>
-                    <a href="/" className="cool-link">accessoires</a>
+                    <NavLink to="/guitare" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Guitares<li></li></NavLink>
+                    <NavLink to="/drums" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Batteries<li></li></NavLink>
+                    <NavLink to="/" className="cool-link">Clavier</NavLink>
+                    <NavLink to="/" className="cool-link">Microphones</NavLink>
+                    <NavLink to="/" className="cool-link">Home Studio</NavLink>
+                    <NavLink to="/" className="cool-link">Accessoires</NavLink>
                 </ul>
                 </div>
             </div>

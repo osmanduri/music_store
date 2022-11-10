@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { AiFillPlusCircle } from "@react-icons/all-files/ai/AiFillPlusCircle";
 import { AiFillMinusCircle } from "@react-icons/all-files/ai/AiFillMinusCircle";
 import { HiChevronLeft } from "@react-icons/all-files/hi/HiChevronLeft";
@@ -9,6 +9,7 @@ import { AiOutlineTwitter } from "@react-icons/all-files/ai/AiOutlineTwitter";
 import { AiOutlineInstagram } from "@react-icons/all-files/ai/AiOutlineInstagram";
 import { AiFillYoutube } from "@react-icons/all-files/ai/AiFillYoutube";
 import CardsSimple from '../components/CardsSimple';
+import axios from 'axios';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -27,6 +28,22 @@ export default function SingleIntrument() {
     const [quantiteValue, setQuantiteValue] = useState(1)
     const [valuePicture, setValuePicture] = useState(1)
     const [swiperRef, setSwiperRef] = useState(null);
+
+    const [singleIntrument, setSingleInstrument] = useState({})
+
+    useEffect(() => {
+        const fetchGuitarById = async () => {
+            await axios.get('http://localhost:5000/api/guitare/636bb76819aca45244e14fe6')
+            .then((res) => {
+                console.log(res.data)
+                setSingleInstrument(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+        fetchGuitarById();
+    }, [])
 
     const quantiteIncrease = () => {
         if(quantiteValue < 5){
@@ -65,45 +82,43 @@ export default function SingleIntrument() {
     }
 
     return (
+        <>
         <div className='single_instrument container_header'>
            <div className='trait_horizontale' style={{marginBottom:"30px"}}/>
 
             <div className='single_instrument_inside'>
             <div className="single_instrument_inside_img">
                 <div onClick={handleSliderPictureDecrease} className="chevron_left"><HiChevronLeft/></div>
-                <img src={require(`../images/guitars/Fender/strat-1957-american-vintage_${valuePicture}.jpg`)} alt="logo"/>
+                {(singleIntrument.chemin_image && singleIntrument.format_image) && <img src={require(`../images/${singleIntrument.chemin_image}/${valuePicture}.jpg`)} alt="logo"/>}
                 <div onClick={handleSliderPictureIncrease} className="chevron_right"><HiChevronRight/></div>
-                <div className="petite_img">
-                    <img onClick={() => setValuePicture(1)} src={require(`../images/guitars/Fender/strat-1957-american-vintage_1.jpg`)} alt="logo" id={"img1"} style={{marginLeft:"0px"}}/>
-                    <img onClick={() => setValuePicture(2)} src={require(`../images/guitars/Fender/strat-1957-american-vintage_2.jpg`)} alt="logo" id={"img2"}/>
-                    <img onClick={() => setValuePicture(3)} src={require(`../images/guitars/Fender/strat-1957-american-vintage_3.jpg`)} alt="logo" id={"img3"}/>
-                    <img onClick={() => setValuePicture(4)} src={require(`../images/guitars/Fender/strat-1957-american-vintage_4.jpg`)} alt="logo" id={"img4"}/>
-                </div>  
+                {
+                                
+                                (singleIntrument.chemin_image && singleIntrument.format_image) && <div className="petite_img">
+                                    <img onClick={() => setValuePicture(1)} src={require(`../images/${singleIntrument.chemin_image}/1.jpg`)} alt="logo" id={"img1"} style={{marginLeft:"0px"}}/>
+                                    <img onClick={() => setValuePicture(2)} src={require(`../images/${singleIntrument.chemin_image}/2.jpg`)} alt="logo" id={"img2"}/>
+                                    <img onClick={() => setValuePicture(3)} src={require(`../images/${singleIntrument.chemin_image}/3.jpg`)} alt="logo" id={"img3"}/>
+                                    <img onClick={() => setValuePicture(4)} src={require(`../images/${singleIntrument.chemin_image}/4.jpg`)} alt="logo" id={"img4"}/>
+                                </div>
+                }
+
             </div>
             <div className='caracteristique'>
-                <p><span>10</span> produits</p>
-                <h1>Dean V Dave Mustaine Guitar Bolt-on Classic Black</h1>
+                <p>{singleIntrument.nb_restant < 5 && <span style={{color:"red"}}>Attention seulement </span>}<span>{singleIntrument.nb_restant}</span> produits restant</p>
+                
+                <h1>{singleIntrument.model}</h1>
             <div className='liste_caracteristique'>
-                <p>Fabricant: <span>Hartke</span></p>
-                <p>Neck Material: <span>Walnut</span></p>
-                <p>Strings: <span>Roundwound Strings</span></p>
-                <p>Warranty: <span>6 Months</span></p>
-                <p>Pickup: <span>Soap Bar</span></p>
-                <p>Nut Width : <span>1.68</span></p>
-                <p>Scale Length: <span>24.75</span></p>
-                <p>Poid: <span>5 kg</span></p>
-                <p>Frequency Range: <span>65 - 20kHz</span></p>
+                <p>Marque:  <span>{singleIntrument.marque}</span></p>
+                <p>Type:  <span>{singleIntrument.type}</span></p>
+                <p>Categorie:  <span>{singleIntrument.categorie}</span></p>
+                <p>Fabrication:  <span>{singleIntrument.fabrique}</span></p>
+                <p>Annee:  <span>{singleIntrument.annee}</span></p>
+                <p>Nombre de corde:   <span>{singleIntrument.nb_cordes}</span></p>
+                <p>Orientation:  <span>{singleIntrument.orientation}</span></p>
+                <p>Poid: <span>{singleIntrument.poid} kg</span></p>
+                <p>Nombre de frettes:  <span>{singleIntrument.nb_frettes}</span></p>
                 <div className='trait_horizontale' style={{marginTop:"30px"}}/>
-                <div className='prix'>211,60 €</div>
+                <div className='prix'>{singleIntrument.prix} €</div>
                 <div className='trait_horizontale' style={{marginTop:"30px"}}/>
-                <div className='color'>
-                <p>Couleur:</p>
-                <div className='color_cercle'>
-                    <div className='color_cercle_single'/>
-                    <div className='color_cercle_single'/>
-                    <div className='color_cercle_single'/>
-                </div>
-                </div>
                 <div className='guitare_size'>
                 <p>Keyboard Material:</p>
                 <select>
@@ -131,7 +146,7 @@ export default function SingleIntrument() {
             </div>
             </div>
             </div>
-            <h1 className='titre_accessoires'>Accessoires</h1>
+            <h1 className='titre_accessoires'>Accessoires de guitare</h1>
             <div className='cards_simple_outside'>
                 <Swiper
             onSwiper={setSwiperRef}
@@ -180,5 +195,7 @@ export default function SingleIntrument() {
             </Swiper>
             </div>
         </div>
+        </>
+        
     )
 }

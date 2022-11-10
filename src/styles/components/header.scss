@@ -133,7 +133,7 @@
         position: absolute;
         left: 230px;
         transition: all 0.3s ease-in-out;
-        transform: translateY(41px);
+        transform: translateY(55px);
         background: #080b10;
         >.search_active_inside {
             display: flex;
@@ -218,11 +218,6 @@
     opacity: 0.9;
 }
 
-.header-active {
-    >span {
-        text-decoration: underline;
-    }
-}
 
 .bienvenur_header {
     display: flex;
