@@ -5,7 +5,7 @@ import detail_product from '../../images/cards_home_promotion/details_product.pn
 
 export default function CardsHomePromotion({element, id}) {
 
-    console.log(Object.keys(element))
+    //console.log(Object.keys(element))
 
     const handleMouseEnter = (e) => {
         const panier = document.getElementById('panier'+id)
@@ -23,11 +23,12 @@ export default function CardsHomePromotion({element, id}) {
                 {element.new && <h3>Nouveau</h3>}
                 {element.promo && <span>Promo !</span>}
                 </div>
-                <img src={clavier} alt="img"/>
+                <div className="model">{element.marque}:&nbsp;&nbsp;{element.model}</div>
+                <img src={require('../../images/' + element.chemin_image + "/" + "1." + element.format_image)} alt="clavier"/>
                 <div className='cards_home_promotion_inside_price'>
                     <div className='cards_home_promotion_inside_price_inside' >
-                        <p>{Object.keys(element)[2] + ": " + element.prix} €</p><br/>
-                        <strong>{element.texte}<br/>Keyboard</strong>
+                        <p>{"Prix: " + element.prix} €</p><br/>
+                        <strong>{element.description}</strong>
                     </div>
                     <div className='cards_home_promotion_inside_price_ajout_panier' id={"panier"+id}>
                         <div className='cards_home_promotion_inside_price_ajout_panier_inside'>

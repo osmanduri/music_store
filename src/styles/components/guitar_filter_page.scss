@@ -1,0 +1,100 @@
+.guitar_filter{
+    display: flex;
+    justify-content: space-between;
+    >.guitar_filter_gauche_menu{
+        width: 25%;
+        margin-top: 90px;
+        .categorie_filter{
+            >.categorie_filter_liste{
+                height: 100px;
+                margin-top: 60px;
+                >h2{
+                    color: white;
+                    font-size: 22px;
+                }
+                >.categorie_filter_liste_details{
+                    margin-top: 10px;
+                    >input{
+                        color: yellow;
+                    }
+                    >label{
+                        color: white;
+                        margin-left: 10px;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+        }
+        
+        .prix_filter{
+            width: 100%;
+            margin-top: 40px;
+            >h2{
+                color: white;
+            }
+        
+            >.prix_filter_max_min{
+                display: flex;
+                align-items: center;
+                color: white;
+                margin-top: 10px;
+        
+                >input{
+                    width: 78px;
+                    height: 30px;
+                }
+                >p{
+                    margin-left: 5px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    >.guitar_filter_droite_menu{
+        width: 75%;
+        >.filter_tri{
+            display: flex;
+
+            >.filtre_tri_details{
+                display: flex;
+                align-items: center;
+
+                >h3{
+                    color: white;
+                }
+                >select{
+                    border: 1px solid white;
+                    height: 50px;
+                    width: 280px;
+                    margin-left: 20px;
+                    color: white;
+                    cursor: pointer;
+                    background: #10131c;
+                    padding-left: 10px;
+                }
+            }
+            >.filtre_montrer_details{
+                display: flex;
+                align-items: center;
+                margin-left: 60px;
+
+                >h3{
+                    color: white;
+                }
+                >select{
+                    border: 1px solid white;
+                    height: 50px;
+                    width: 280px;
+                    margin-left: 20px;
+                    color: white;
+                    cursor: pointer;
+                    background: #10131c;
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+

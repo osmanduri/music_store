@@ -33,7 +33,7 @@ export default function SingleIntrument() {
 
     useEffect(() => {
         const fetchGuitarById = async () => {
-            await axios.get('http://localhost:5000/api/guitare/636bb76819aca45244e14fe6')
+            await axios.get('http://localhost:5000/api/guitare/636bb89419aca45244e14fea')
             .then((res) => {
                 console.log(res.data)
                 setSingleInstrument(res.data)

@@ -1,50 +1,62 @@
 const cards_home_promotion = [{
         id: 1,
-        img: "clavier.webp",
+        chemin_image: "guitars/Fender/stratocaster/american-professional-II-HSS",
+        format_image: "jpg",
         prix: "456,90",
-        texte: "Casio CTKVK3 PAK 61-Key Prenium Keyboard",
+        description: "Casio CTKVK3 PAK 61-Key Prenium Keyboard",
         promo: false,
-        new: true
+        new: true,
+        model:"American Professional II HSS"
     },
     {
         id: 2,
-        img: "violon.webp",
+        chemin_image: "guitars/Fender/stratocaster/american-professional-II-HSS",
+        format_image: "jpg",
         prix: "326,90",
-        texte: "Cremona SV-130 Premier Novice Violin Outfit..",
+        description: "Cremona SV-130 Premier Novice Violin Outfit..",
         promo: true,
-        new: true
+        new: true,
+        model:"American Professional II HSS"
     },
     {
         id: 3,
-        img: "sax.webp",
+        chemin_image: "guitars/Fender/stratocaster/american-professional-II-HSS",
+        format_image: "jpg",
         prix: "1023,90",
-        texte: "Cremona SV-130 Premier Novice Violin Outfit..",
+        description: "Cremona SV-130 Premier Novice Violin Outfit..",
         promo: false,
-        new: false
+        new: false,
+        model:"American Professional II HSS"
     },
     {
         id: 4,
-        img: "sax.webp",
+        chemin_image: "guitars/Fender/stratocaster/american-professional-II-HSS",
+        format_image: "jpg",
         prix: "1023,90",
-        texte: "Cremona SV-130 Premier Novice Violin Outfit..",
+        description: "Cremona SV-130 Premier Novice Violin Outfit..",
         promo: true,
-        new: false
+        new: false,
+        model:"American Professional II HSS"
     },
     {
         id: 5,
-        img: "sax.webp",
+        chemin_image: "guitars/Fender/stratocaster/american-professional-II-HSS",
+        format_image: "jpg",
         prix: "1023,90",
-        texte: "Cremona SV-130 Premier Novice Violin Outfit..",
+        description: "Cremona SV-130 Premier Novice Violin Outfit..",
         promo: true,
-        new: false
+        new: false,
+        model:"American Professional II HSS"
     },
     {
         id: 6,
-        img: "sax.webp",
+        chemin_image: "guitars/Fender/stratocaster/american-professional-II-HSS",
+        format_image: "jpg",
         prix: "1023,90",
-        texte: "Cremona SV-130 Premier Novice Violin Outfit..",
+        description: "Cremona SV-130 Premier Novice Violin Outfit..",
         promo: true,
-        new: false
+        new: false,
+        model:"American Professional II HSS"
     }
 
 
