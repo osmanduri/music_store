@@ -1,20 +1,22 @@
 .cards_home_promotion_outside {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     >.card_home_promotion {
-        width: 405px;
-        height: 600px;
+        width: 385px;
+        height: 580px;
         background: white;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 40px;
+        margin: 5px 0px 5px 0px;
+        cursor: pointer;
         >.card_home_promotion_inside {
             >.nouveau_promotion_ {
                 display: flex;
                 height: 26px;
+                margin-top: 5px;
                 >h3 {
                     background: #f0a951;
                     padding: 2px 6px;
@@ -118,7 +120,6 @@
                 }
             }
             >.model{
-                margin-top: 5px;
                 font-weight: bold;
                 font-size: 16px;
                 text-transform: capitalize;

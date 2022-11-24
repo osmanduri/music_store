@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-export default function Categorie({filterCategorie, setCategorieStratocaster, setCategorieTelecaster}) {
+export default function Categorie() {
     const [nbStratAndTele, setNbStratAndTele] = useState({})
     useEffect(() => {
         const fetchStratAndTele = async () => {
@@ -9,36 +9,24 @@ export default function Categorie({filterCategorie, setCategorieStratocaster, se
             .then((res) => {
                 setNbStratAndTele(res.data)
             })
-            .catch(err => console.log(err))
+            .catch((err) => {
+                console.log(err);
+            })
         }
         fetchStratAndTele();
     })
 
-    const handleCheckStratocaster = (e) => {
-        if(e.target.checked){
-            setCategorieStratocaster('stratocaster')
-        }else if(!e.target.checked){
-            setCategorieStratocaster('')
-        }
-    }
 
-    const handleCheckTelecaster = (e) => {
-        if(e.target.checked){
-            setCategorieTelecaster('telecaster')
-        }else if(!e.target.checked){
-            setCategorieTelecaster('')
-        }
-    }
     return (
         <div className="categorie_filter">
             <div className="categorie_filter_liste" style={{marginTop:"0px"}}>
             <h2>Catégories</h2>
             <div className="categorie_filter_liste_details">
-                <input type="checkbox" id="stratocaster" name="stratocaster" onChange={handleCheckStratocaster}/>
+                <input type="checkbox" id="stratocaster" name="stratocaster" onChange={null}/>
                 <label>stratocaster ( {nbStratAndTele.stratNum} )</label>
             </div>
             <div className="categorie_filter_liste_details">
-                <input type="checkbox" id="telecaster" name="telecaster" onChange={handleCheckTelecaster}/>
+                <input type="checkbox" id="telecaster" name="telecaster" onChange={null}/>
                 <label>telecaster ( {nbStratAndTele.teleNum} )</label>
             </div>
             </div>

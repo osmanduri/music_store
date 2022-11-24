@@ -19,11 +19,11 @@ export default function CardsHomePromotion({element, id}) {
     return (
         <div className='card_home_promotion'>
             <div className="card_home_promotion_inside" onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <div className="model">{element.marque}:&nbsp;&nbsp;{element.model}</div>
                 <div className='nouveau_promotion_'>
                 {element.new && <h3>Nouveau</h3>}
                 {element.promo && <span>Promo !</span>}
                 </div>
-                <div className="model">{element.marque}:&nbsp;&nbsp;{element.model}</div>
                 <img src={require('../../images/' + element.chemin_image + "/" + "1." + element.format_image)} alt="clavier"/>
                 <div className='cards_home_promotion_inside_price'>
                     <div className='cards_home_promotion_inside_price_inside' >

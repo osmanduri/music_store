@@ -27,24 +27,11 @@ export default function GuitarFilterPage() {
 
     }, [])
 
-    const filterCategorie = async () => {
-        await axios.get('http://localhost:5000/api/guitare/filter/categorie', {
-            headers: {
-                'Content-Type': 'application/json',
-                'stratocaster': `${categorieStratocaster}`,
-                'telecaster' : `${categorieTelecaster}`
-            }
-        })
-        .then((res) => {
-            console.log(res.data)
-            setGuitarData(res.data)
-        })
-        .catch(err => console.log(err))
-    }
+
     return (
         <div className="guitar_filter container_header">
             <div className="guitar_filter_gauche_menu">
-                <Categorie filterCategorie={filterCategorie, setCategorieStratocaster, seCategorieTelecaster}/>
+                <Categorie/>
                 <Disponibilite/>
                 <Marque/>
                 <Prix/>

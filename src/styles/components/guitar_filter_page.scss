@@ -15,7 +15,9 @@
                 >.categorie_filter_liste_details{
                     margin-top: 10px;
                     >input{
-                        color: yellow;
+
+                        //background: red;
+                        cursor: pointer;
                     }
                     >label{
                         color: white;
@@ -42,6 +44,8 @@
                 >input{
                     width: 78px;
                     height: 30px;
+                    outline: none;
+                    padding-left: 5px;
                 }
                 >p{
                     margin-left: 5px;
@@ -51,7 +55,7 @@
         }
     }
     >.guitar_filter_droite_menu{
-        width: 75%;
+        width: 100%;
         >.filter_tri{
             display: flex;
 
@@ -64,6 +68,7 @@
                 }
                 >select{
                     border: 1px solid white;
+                    border-radius: 5px;
                     height: 50px;
                     width: 280px;
                     margin-left: 20px;
@@ -71,6 +76,7 @@
                     cursor: pointer;
                     background: #10131c;
                     padding-left: 10px;
+                    outline: none;
                 }
             }
             >.filtre_montrer_details{
@@ -83,6 +89,7 @@
                 }
                 >select{
                     border: 1px solid white;
+                    border-radius: 5px;
                     height: 50px;
                     width: 280px;
                     margin-left: 20px;
@@ -90,6 +97,7 @@
                     cursor: pointer;
                     background: #10131c;
                     padding-left: 10px;
+                    outline: none;
                 }
             }
         }
