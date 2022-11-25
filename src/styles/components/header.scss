@@ -174,6 +174,7 @@
 .header_info_right {
     display: flex;
     align-items: center;
+    position: relative;
     a {
         color: white;
         font-size: 15px;
@@ -207,6 +208,176 @@
         &:hover {
             color: rgb(254, 118, 0);
         }
+    }
+    .connexion{
+        position: absolute;
+        top: 42px;
+        width: 420px;
+        right: 0px;
+        background: #10131c;
+        height: 400px;
+        z-index: 999;
+        box-shadow: 0px 2px 8px rgba(254, 118, 0, 1);
+        transition: height 0.5s linear;
+
+        >form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+        transition: all 0.5s linear;
+        margin: auto;
+        height: 100%;
+
+        >input{
+            width: 290px;
+            height: 51px;
+            border: 2px solid #535558;
+            color: #8a8a8a;
+            border-radius: 30px;
+            background: none;
+            margin-top: 5px;
+            padding-left: 20px;
+            font-size: 16px;
+
+        }
+        >.mot_de_passe{
+            position: relative;
+            >input{
+                width: 290px;
+                height: 51px;
+                border: 2px solid #535558;
+                color: #8a8a8a;
+                border-radius: 30px;
+                background: none;
+                margin-top: 5px;
+                padding-left: 20px;
+                font-size: 16px;
+            }
+            >i{
+                position: absolute;
+                color: white;
+                right: 20px;
+                top: 16px;
+                font-size: 30px;
+                cursor: pointer;
+            }
+        }
+        >label{
+            color: white;
+            width: 290px;
+            text-align: left;
+            margin-top: 15px;
+        }
+        >.btn-connexion{
+            position: relative;
+            >button{
+                position: relative;
+                width: 290px;
+                height: 43px;
+                background: none;
+                border: none;
+                border-radius: 30px;
+                color: #8a8a8a;
+                background: white;
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 16px;
+                margin-top: 15px;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+
+                &:hover{
+                    color: black;
+                }
+            }
+            >i{
+                position: absolute;
+                color: #8a8a8a;
+                z-index: 999;
+                left: 60px;
+                top: 30px;
+                font-size: 16px;
+            }
+        }
+
+
+        >span{
+            margin-top: 15px;
+            >button{
+                position: relative;
+                width: 290px;
+                height: 55px;
+                background: none;
+                border:none;
+                border-radius: 30px;
+                color: #8a8a8a;
+                text-transform: uppercase;
+                font-weight: 600;
+                background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        }
+
+        >p{
+            color: #535558;
+            font-weight: 600;
+            font-size: 16px;
+            width: 290px;
+            text-align: left;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+
+            &:hover{
+                color: white;
+            }
+        }
+
+        .create_account{
+            color: white;
+            width: 290px;
+            
+            
+
+            >.civilite{
+                display: flex;
+            }
+
+            >.create_account_input{
+                display: flex;
+                flex-direction: column;
+                >input{
+                    width: 290px;
+                    height: 51px;
+                    border: 2px solid #535558;
+                    color: #8a8a8a;
+                    border-radius: 30px;
+                    background: none;
+                    margin-top: 5px;
+                    padding-left: 20px;
+                    font-size: 16px;
+                }
+            }
+        }
+        }
+
+        >form.active{
+        opacity: 0;
+        
+        //display: none;
+        //margin-top: 100px;
+        transition: all 0.4s ease-in-out;
+        transform: translateY(-200px);
+
+        }
+    }
+    .connexion.active{
+        height: 0px;
+        transition: all 0.4s ease-in-out;
     }
 }
 
