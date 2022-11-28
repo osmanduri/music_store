@@ -175,13 +175,22 @@
     display: flex;
     align-items: center;
     position: relative;
-    a {
+    >.header_info_right_connexion{
         color: white;
         font-size: 15px;
         display: flex;
         align-items: center;
         transition: all 0.3s ease-in-out;
-        &:hover {
+        
+        >.prenom{
+            margin-right: 15px;
+        }
+        >span{
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        >span:hover {
             color: rgb(254, 118, 0);
         }
     }
@@ -215,7 +224,7 @@
         width: 420px;
         right: 0px;
         background: #10131c;
-        height: 400px;
+        height: 550px;
         z-index: 999;
         box-shadow: 0px 2px 8px rgba(254, 118, 0, 1);
         transition: height 0.5s linear;
@@ -223,30 +232,31 @@
         >form{
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        //justify-content: center;
         align-items: center;
         opacity: 1;
         transition: all 0.5s linear;
         margin: auto;
         height: 100%;
 
-        >input{
-            width: 290px;
-            height: 51px;
-            border: 2px solid #535558;
-            color: #8a8a8a;
-            border-radius: 30px;
-            background: none;
-            margin-top: 5px;
-            padding-left: 20px;
-            font-size: 16px;
+        >.connect{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
 
-        }
-        >.mot_de_passe{
-            position: relative;
+            >strong{
+                color: white;
+                font-size: 18px;
+                font-weight: 800;
+                text-transform: uppercase;
+                text-align: center;
+                margin-bottom: 25px;
+            }
             >input{
                 width: 290px;
-                height: 51px;
+                height: 43px;
                 border: 2px solid #535558;
                 color: #8a8a8a;
                 border-radius: 30px;
@@ -254,102 +264,11 @@
                 margin-top: 5px;
                 padding-left: 20px;
                 font-size: 16px;
+                outline: none;
+    
             }
-            >i{
-                position: absolute;
-                color: white;
-                right: 20px;
-                top: 16px;
-                font-size: 30px;
-                cursor: pointer;
-            }
-        }
-        >label{
-            color: white;
-            width: 290px;
-            text-align: left;
-            margin-top: 15px;
-        }
-        >.btn-connexion{
-            position: relative;
-            >button{
+            >.mot_de_passe{
                 position: relative;
-                width: 290px;
-                height: 43px;
-                background: none;
-                border: none;
-                border-radius: 30px;
-                color: #8a8a8a;
-                background: white;
-                text-transform: uppercase;
-                font-weight: 600;
-                font-size: 16px;
-                margin-top: 15px;
-                cursor: pointer;
-                transition: all 0.2s ease-in-out;
-
-                &:hover{
-                    color: black;
-                }
-            }
-            >i{
-                position: absolute;
-                color: #8a8a8a;
-                z-index: 999;
-                left: 60px;
-                top: 30px;
-                font-size: 16px;
-            }
-        }
-
-
-        >span{
-            margin-top: 15px;
-            >button{
-                position: relative;
-                width: 290px;
-                height: 55px;
-                background: none;
-                border:none;
-                border-radius: 30px;
-                color: #8a8a8a;
-                text-transform: uppercase;
-                font-weight: 600;
-                background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
-                color: white;
-                font-size: 16px;
-                cursor: pointer;
-            }
-        }
-
-        >p{
-            color: #535558;
-            font-weight: 600;
-            font-size: 16px;
-            width: 290px;
-            text-align: left;
-            margin-top: 15px;
-            cursor: pointer;
-            transition: all 0.1s ease;
-
-            &:hover{
-                color: white;
-            }
-        }
-
-        .create_account{
-            color: white;
-            width: 290px;
-            
-            
-
-            >.civilite{
-                display: flex;
-            }
-
-            >.create_account_input{
-                display: flex;
-                flex-direction: column;
                 >input{
                     width: 290px;
                     height: 51px;
@@ -360,6 +279,261 @@
                     margin-top: 5px;
                     padding-left: 20px;
                     font-size: 16px;
+                    outline: none;
+                }
+                >i{
+                    position: absolute;
+                    color: white;
+                    right: 20px;
+                    top: 16px;
+                    font-size: 30px;
+                    cursor: pointer;
+                }
+            }
+            >label{
+                color: white;
+                width: 290px;
+                text-align: left;
+                margin-top: 15px;
+            }
+            >.btn-connexion{
+                position: relative;
+                >button{
+                    position: relative;
+                    width: 290px;
+                    height: 43px;
+                    background: none;
+                    border: none;
+                    border-radius: 30px;
+                    color: #8a8a8a;
+                    background: white;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    font-size: 16px;
+                    margin-top: 20px;
+                    cursor: pointer;
+                    transition: all 0.2s ease-in-out;
+    
+                    &:hover{
+                        color: black;
+                    }
+                }
+                >i{
+                    position: absolute;
+                    color: #8a8a8a;
+                    z-index: 999;
+                    left: 60px;
+                    top: 30px;
+                    font-size: 16px;
+                }
+            }
+            >span{
+                margin-top: 25px;
+                >p{
+                    position: relative;
+                    width: 290px;
+                    height: 43px;
+                    background: none;
+                    border:none;
+                    border-radius: 30px;
+                    color: #8a8a8a;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+                    color: white;
+                    font-size: 16px;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+            }
+    
+            >p{
+                color: white;
+                font-weight: 600;
+                font-size: 16px;
+                width: 290px;
+                height: 43px;
+                text-align: left;
+                cursor: pointer;
+                transition: all 0.1s ease;
+                background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+                border-radius: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                text-transform: uppercase;
+                font-weight: 600;
+    
+                &:hover{
+                    color: white;
+                }
+            }
+        }
+
+        .create_account{
+            color: white;
+            width: 290px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            >.mot_de_passe{
+                position: relative;
+                >input{
+                    width: 290px;
+                    height: 51px;
+                    border: 2px solid #535558;
+                    color: #8a8a8a;
+                    border-radius: 30px;
+                    background: none;
+                    margin-top: 5px;
+                    padding-left: 20px;
+                    font-size: 16px;
+                    outline: none;
+                }
+                >i{
+                    position: absolute;
+                    color: white;
+                    right: 20px;
+                    top: 32px;
+                    font-size: 30px;
+                    cursor: pointer;
+                }
+            }
+            
+            >strong{
+                color: white;
+                font-size: 18px;
+                font-weight: 800;
+                text-transform: uppercase;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            >.create_account_input{
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+                >input{
+                    width: 290px;
+                    height: 43px;
+                    border: 2px solid #535558;
+                    color: #8a8a8a;
+                    border-radius: 30px;
+                    background: none;
+                    padding-left: 20px;
+                    font-size: 16px;
+                    outline: none;
+                }
+            }
+            >.connect_or_create_account{
+                width: 290px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                >span{
+                    width: 290px;
+                    height: 43px;
+                    border:none;
+                    background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+                    border-radius: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    font-size: 16px;
+                    margin-top: 10px;
+
+                    
+                }
+            }
+            >span{
+                position: relative;
+                width: 290px;
+                height: 43px;
+                background: none;
+                border: none;
+                border-radius: 30px;
+                color: #8a8a8a;
+                text-transform: uppercase;
+                font-weight: 600;
+                background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        }
+        >.password_reset{
+            color: white;
+            width: 290px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            >strong{
+                color: white;
+                font-size: 18px;
+                font-weight: 800;
+                text-transform: uppercase;
+                text-align: center;
+                margin-top: 30px;
+            }
+            >p{
+                width: 290px;
+                color: white;
+                margin-top: 30px;
+                font-size: 16px;
+            }
+            >.password_reset_create_connect{
+                margin-top: 30px;
+                >span{
+                    position: relative;
+                    width: 290px;
+                    height: 43px;
+                    background: none;
+                    border: none;
+                    border-radius: 30px;
+                    color: #8a8a8a;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    background: linear-gradient(135deg, #1e5799 0%, #207cca 0%, #fe6c00 0%, #feb400 100%);
+                    color: white;
+                    font-size: 16px;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 10px;
+                }
+            }
+
+
+            >.password_reset_email{
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+                >label{
+                    color: white;
+                }
+                >input{
+                    width: 290px;
+                    height: 43px;
+                    border: 2px solid #535558;
+                    color: #8a8a8a;
+                    border-radius: 30px;
+                    background: none;
+                    padding-left: 20px;
+                    font-size: 16px;
+                    outline: none;
+                    margin-top: 5px;
                 }
             }
         }
@@ -371,7 +545,7 @@
         //display: none;
         //margin-top: 100px;
         transition: all 0.4s ease-in-out;
-        transform: translateY(-200px);
+        transform: translateY(-300px);
 
         }
     }

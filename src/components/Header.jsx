@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
+import { UserContext } from '../userContext'
+import Cookies from 'universal-cookie'
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart";
 import { BsSearch } from "@react-icons/all-files/bs/BsSearch";
 import { CgFacebook } from "@react-icons/all-files/cg/CgFacebook";
@@ -9,6 +11,7 @@ import { HiPhone } from "@react-icons/all-files/hi/HiPhone";
 import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
 import { AiFillEyeInvisible } from "@react-icons/all-files/ai/AiFillEyeInvisible";
 import { AiFillEye } from "@react-icons/all-files/ai/AiFillEye";
+import axios from 'axios'
 
 import { NavLink } from 'react-router-dom'
 
@@ -16,10 +19,65 @@ export default function Header() {
     const [searchActive, setSearchActive] = useState(false)
     const [eyeVisible, setEyeVisible] = useState(false)
     const [switchConnect, setSwitchConnect] = useState({
+        
         connect:true,
         create_account:false,
         password_reset:false
     })
+
+    const {userData, setUserData} = useContext(UserContext);
+    const [errorPassword, setErrorPassword] = useState('')
+    const cookies = new Cookies();
+    const login = useRef(null)
+    const password = useRef(null)
+    useEffect(() =>{
+        const data = localStorage.getItem('storage-userData');
+        if(data){
+            setUserData(JSON.parse(data))
+        }
+    },[])
+
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        setErrorPassword('')
+        const payload = {
+            email: login.current.value,
+            password: password.current.value
+        }
+        console.log(payload)
+        axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/login` , payload)
+        .then((res) => {
+            if(res.data.message){
+                setErrorPassword(res.data.message)
+                console.log(res.data.message)
+            }else{
+                const form = document.getElementById('form')
+                const connexion = document.getElementById('connexion')
+                //console.log(res.data)
+                //cookies.set('my_token', res.data.token, { path: '/'})
+                //const user = {...res.data}
+                //delete user["token"];
+                setUserData(res.data)
+                localStorage.setItem('storage-userData', JSON.stringify(res.data))
+                //console.log(cookies.get('my_token'))
+                console.log(res.data)
+                form.classList.add('active')
+                connexion.classList.add('active')
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+            
+        })
+    }
+
+    const handleDisconnect = async () =>{
+        localStorage.removeItem('storage-userData');
+        cookies.remove("jwt")
+        setUserData(null)
+        //window.location.reload()
+        //window.location.href = "/"
+    } 
 
     const handleActiveSearch = () => {
         setSearchActive(!searchActive)
@@ -105,17 +163,31 @@ export default function Header() {
                 </div>
                 
                 <div className="header_info_right">
-                    <NavLink to="#" className="hover" ><span onClick={handleShowConnexion}>Se connecter</span></NavLink>
-                    <div className="connexion active" id="connexion">
-                    <form type="submit" className="active" id="form">
+                    {
+                                       !userData ? 
+                                        <div  className="header_info_right_connexion" >
+                                            <span onClick={handleShowConnexion}>Se connecter</span>
+                                        </div>
+                                        :
+                                        <div  className="header_info_right_connexion" >
+                                            <div className="prenom">Bienvenue {userData.prenom}</div>
+                                            <span onClick={handleDisconnect}>Deconnexion</span>
+                                        </div>
+                                        
+                    }
 
-                                   { switchConnect.connect && <>
+                    <div className="connexion active" id="connexion">
+                    <form type="submit" className="active" id="form" onSubmit={handleLogin}>
+
+                                   { switchConnect.connect && 
+                                   <div className="connect">
+                                       <strong>Connexion</strong>
                                         <label>Email</label>
-                                        <input type="text"/>
+                                        <input type="text" ref={login} required/>
 
                                         <label>Mot de passe</label>
                                         <div className="mot_de_passe">
-                                            <input type={eyeVisible ? "password" : "text"}/>
+                                            <input type={eyeVisible ? "password" : "text"} ref={password} required/>
                                             <i onClick={handleShowEye}>
                                                 {
                                                     eyeVisible ? <AiFillEye/> : <AiFillEyeInvisible/>
@@ -127,20 +199,14 @@ export default function Header() {
                                         <i><AiFillLock/></i>
                                         <button type="submit">Se Connecter</button>
                                         </div>
-                                        <span><button type="submit" onClick={() => handleSwitchConnectCreatePasswordReset("create_account")}>Créer un compte</button></span>
-                                        <p>Mot de passe oublié ?</p>
-                                    </>
+                                        <span><p type="submit" onClick={() => handleSwitchConnectCreatePasswordReset("create_account")}>Créer un compte</p></span>
+                                        <p onClick={() => handleSwitchConnectCreatePasswordReset('password_reset')}>Mot de passe oublié ?</p>
+                                    </div>
                                     }
                                     {
                                         switchConnect.create_account && 
                                         <div className="create_account">
-                                            <label>Titre</label>
-                                            <div className="civilite">
-                                                <input type="checkbox"/>
-                                                <p>Mr.</p>
-                                                <input type="checkbox"/>
-                                                <p>Mr.</p> 
-                                            </div>
+                                            <strong>Creation de compte</strong>
                                             <div className="create_account_input">
                                                 <label>Prénom</label>
                                                 <input type="text"/>
@@ -153,17 +219,52 @@ export default function Header() {
                                                 <label>Email</label>
                                                 <input type="text"/>
                                             </div>
-                                            <div className="create_account_input">
-                                                <label>Mot de passe</label>
-                                                <input type="text"/>
+                                            <div className="mot_de_passe">
+                                            <label>Mot de passe</label>
+                                            <input type={eyeVisible ? "password" : "text"}/>
+                                            <i onClick={handleShowEye}>
+                                                {
+                                                    eyeVisible ? <AiFillEye/> : <AiFillEyeInvisible/>
+                                                }
+                                                
+                                            </i>
                                             </div>
+                                            <div className="mot_de_passe">
+                                            <label>Confirmation du mot de passe</label>
+                                            <input type={eyeVisible ? "password" : "text"}/>
+                                            <i onClick={handleShowEye}>
+                                                {
+                                                    eyeVisible ? <AiFillEye/> : <AiFillEyeInvisible/>
+                                                }
+                                                
+                                            </i>
+                                            </div>
+                                            <div className="connect_or_create_account">
+                                            <span onClick={() => console.log('compte creation !')}>Enregistrer</span>
+                                            <span onClick={() => handleSwitchConnectCreatePasswordReset('connect')}>Se Connecter</span>
+                                            </div>
+                                            
 
                                         </div>
                                     }
                                     {
                                         switchConnect.password_reset &&
                                         <div className="password_reset" id="password_reset">
-                                            <p onClick={() => handleSwitchConnectCreatePasswordReset('connect')}>Password Reset !</p>
+                                            <strong>Mot de passe oublié</strong>
+                                            <p>Veuillez entrer l'adresse e-mail que vous avez utilisé pour vous inscrire. Nous vous enverrons nouveau lien pour reinitialiser votre mot de passe.</p>
+                                            <div className="password_reset_email">
+                                                <label>Adresse Email</label>
+                                                <input type="text"/>
+                                            </div>
+                                            <div className="password_reset_email">
+                                                <label>Confirmation Adresse Email</label>
+                                                <input type="text"/>
+                                            </div>
+                                            <div className="password_reset_create_connect">
+                                                <span onClick={() => handleSwitchConnectCreatePasswordReset('connect')}>Se Connecter</span>
+                                                <span><p type="submit" onClick={() => handleSwitchConnectCreatePasswordReset("create_account")}>Créer un compte</p></span>
+                                            </div>
+
                                         </div>
                                     }
                     </form>

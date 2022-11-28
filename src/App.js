@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useMemo} from 'react'
 import { BrowserRouter as Router, Route, Routes, Redirect, Navigate } from 'react-router-dom'
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -7,11 +7,16 @@ import Home from './pages/Home';
 import SingleIntrument from './pages/SingleIntrument';
 import Drums from './pages/Drums';
 import GuitarFilter from './pages/GuitarFilterPage';
+import { UserContext } from './userContext';
 
 function App() {
+  const [userData, setUserData] = useState([])
+
+  const providerValue = useMemo(() => ({userData, setUserData}), [userData, setUserData])
   return (
     <div className="App">
       <Router>
+      <UserContext.Provider value={providerValue}>
         <Header/>
         <div className='background_10131c'>
         <Navigation/>
@@ -28,6 +33,7 @@ function App() {
         </Routes>
         </div>
       <Footer/>
+      </UserContext.Provider>
       </Router>
     </div>
   );

@@ -6,7 +6,6 @@ import Populaire from '../components/Home/Populaire'
 import AjouterPanier from '../components/Home/Utils/AjouterPanier'
 
 export default function Home() {
-    console.log(cards)
     return (
         <div className='home'>
             <img src={fender_home} alt="fender_home"/>
