@@ -8,6 +8,7 @@ import SingleIntrument from './pages/SingleIntrument';
 import Drums from './pages/Drums';
 import GuitarFilter from './pages/GuitarFilterPage';
 import { UserContext } from './userContext';
+import Panier from './pages/Panier';
 
 function App() {
   const [userData, setUserData] = useState([])
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/guitare" element={ <GuitarFilter/> }></Route>
         <Route exact path="/guitare/:id" element={ <SingleIntrument/> }></Route>
         <Route exact path="/drums" element={ <Drums/> }></Route>
+        <Route exact path="/panier" element = { <Panier/> }></Route>
         
         <Route
         path='*'

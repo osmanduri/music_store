@@ -13,7 +13,7 @@ import { AiFillEyeInvisible } from "@react-icons/all-files/ai/AiFillEyeInvisible
 import { AiFillEye } from "@react-icons/all-files/ai/AiFillEye";
 import axios from 'axios'
 
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export default function Header() {
     const [searchActive, setSearchActive] = useState(false)
@@ -270,10 +270,10 @@ export default function Header() {
                     </form>
                     </div>
                     <div className="trait_header"></div>
-                    <i>
+                    <Link to="/panier" className="panier_header">
                         <AiOutlineShoppingCart/>
                         <p>1</p>
-                    </i>
+                    </Link>
                 </div> 
             </div>
         </div>

@@ -9,11 +9,10 @@ export default function Navigation() {
                 <div className='navigation_right'>
                 <ul>
                     <NavLink to="/guitare" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Guitares<li></li></NavLink>
-                    <NavLink to="/drums" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Batteries<li></li></NavLink>
-                    <NavLink to="/" className="cool-link">Clavier</NavLink>
-                    <NavLink to="/" className="cool-link">Microphones</NavLink>
-                    <NavLink to="/" className="cool-link">Home Studio</NavLink>
-                    <NavLink to="/" className="cool-link">Accessoires</NavLink>
+                    <NavLink to="/clavier" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Clavier</NavLink>
+                    <NavLink to="/microphone" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Microphones</NavLink>
+                    <NavLink to="/home_studio" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Home Studio</NavLink>
+                    <NavLink to="/accessoire" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Accessoires</NavLink>
                 </ul>
                 </div>
             </div>

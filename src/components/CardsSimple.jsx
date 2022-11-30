@@ -6,7 +6,8 @@ export default function CardsSimple({element}) {
     return (
         <div className='cards_simple'>
             <div className='cards_simple_inside'>
-                <img src={require('../images/' + element.chemin_image + "/" + "1." + element.format_image)} alt="clavier"/>
+                {/*<img src={require('../images/' + element.chemin_image + "/" + "1." + element.format_image)} alt="clavier"/>*/}
+                <img src="https://www.woodbrass.com/images/woodbrass/3YAMAHA+P45+PACK1.JPG" alt="clavier"/>
                 <p>Casio CTKVK3 PAK 61-Key Premium Keyboard </p>
                 <div className='text_span'>Our prices are so low, and you may wonder if our products are used or... </div>
                 <div className='trait_horizontale' style={{marginTop:"15px"}}/>

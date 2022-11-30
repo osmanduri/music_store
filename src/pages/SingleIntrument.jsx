@@ -10,6 +10,7 @@ import { AiOutlineInstagram } from "@react-icons/all-files/ai/AiOutlineInstagram
 import { AiFillYoutube } from "@react-icons/all-files/ai/AiFillYoutube";
 import CardsSimple from '../components/CardsSimple';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -25,6 +26,8 @@ import { Pagination, Navigation } from "swiper";
 
 
 export default function SingleIntrument() {
+    let guitarId = useParams()
+
     const [quantiteValue, setQuantiteValue] = useState(1)
     const [valuePicture, setValuePicture] = useState(1)
     const [swiperRef, setSwiperRef] = useState(null);
@@ -33,7 +36,7 @@ export default function SingleIntrument() {
 
     useEffect(() => {
         const fetchGuitarById = async () => {
-            await axios.get('http://localhost:5000/api/guitare/636bb89419aca45244e14fea')
+            await axios.get(`http://localhost:5000/api/guitare/${guitarId.id}`)
             .then((res) => {
                 console.log(res.data)
                 setSingleInstrument(res.data)
