@@ -1,26 +1,36 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import PanierUser from '../components/Panier/PanierUser';
 import axios from 'axios'
+import { UserContext } from '../userContext'
 
 export default function Panier() {
     const [panier, setPanier] = useState([])
+    const [updateQuantite, setUpdateQuantite] = useState(false)
+    const {userData, setUserData} = useContext(UserContext);
     useEffect(() => {
-        async function lol(){
-            await axios.get('http://localhost:5000/api/guitare/multiple')
+        const data = JSON.parse(localStorage.getItem('storage-userData'));
+        async function fetchUser(){
+            await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/${data._id}`)
             .then((res) => {
-                console.log(res.data)
-                setPanier(res.data)
+                setPanier(res.data.panier)
+                setUserData(res.data)
+
             })
-            .catch((err) => {
-                console.log(err)
-            })
+            .catch(err => console.log(err))
         }
 
-        lol();
+        fetchUser();
+        
 
-    }, [])
+        /*if(data){
+            setPanier(JSON.parse(data).panier)
+        }*/
+
+    }, [updateQuantite])
     return (
         <div className="panier container_header">
+            {
+                panier.length > 0 ?
             <table>
                 <thead>
                     <tr>
@@ -34,9 +44,9 @@ export default function Panier() {
                     </tr>
                 </thead>
                 {
-                    panier.map((element, index) => {
+                    panier && panier.map((element, index) => {
                         return (
-                            <PanierUser element={element} key={index}/>
+                            <PanierUser element={element} key={index} updateQuantite={updateQuantite} setUpdateQuantite={setUpdateQuantite}/>
                         )
                     })
                 }
@@ -49,6 +59,11 @@ export default function Panier() {
                     </tr>
                 </tfoot>
             </table> 
+            :
+            <div className="panier_vide">
+                <h2>Votre panier</h2>
+            </div>
+            }
         </div>
     )
 }

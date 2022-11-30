@@ -11,13 +11,13 @@ import { HiPhone } from "@react-icons/all-files/hi/HiPhone";
 import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
 import { AiFillEyeInvisible } from "@react-icons/all-files/ai/AiFillEyeInvisible";
 import { AiFillEye } from "@react-icons/all-files/ai/AiFillEye";
-import axios from 'axios'
+import axios from 'axios';
 
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Header() {
     const [searchActive, setSearchActive] = useState(false)
-    const [eyeVisible, setEyeVisible] = useState(false)
+    const [eyeVisible, setEyeVisible] = useState(true)
     const [switchConnect, setSwitchConnect] = useState({
         
         connect:true,
@@ -26,15 +26,19 @@ export default function Header() {
     })
 
     const {userData, setUserData} = useContext(UserContext);
-    const [errorPassword, setErrorPassword] = useState('')
     const cookies = new Cookies();
+    const [errorPassword, setErrorPassword] = useState('')
     const login = useRef(null)
     const password = useRef(null)
     useEffect(() =>{
         const data = localStorage.getItem('storage-userData');
         if(data){
             setUserData(JSON.parse(data))
+            console.log(JSON.parse(data))
+        }else{
+            setUserData(null)
         }
+
     },[])
 
     const handleLogin = async (e) => {
@@ -57,10 +61,10 @@ export default function Header() {
                 //cookies.set('my_token', res.data.token, { path: '/'})
                 //const user = {...res.data}
                 //delete user["token"];
-                setUserData(res.data)
+                
                 localStorage.setItem('storage-userData', JSON.stringify(res.data))
+                setUserData(res.data)
                 //console.log(cookies.get('my_token'))
-                console.log(res.data)
                 form.classList.add('active')
                 connexion.classList.add('active')
             }
@@ -74,9 +78,9 @@ export default function Header() {
     const handleDisconnect = async () =>{
         localStorage.removeItem('storage-userData');
         cookies.remove("jwt")
-        setUserData(null)
+        setUserData([])
         //window.location.reload()
-        //window.location.href = "/"
+        window.location.href = "/"
     } 
 
     const handleActiveSearch = () => {
@@ -164,15 +168,21 @@ export default function Header() {
                 
                 <div className="header_info_right">
                     {
-                                       !userData ? 
-                                        <div  className="header_info_right_connexion" >
-                                            <span onClick={handleShowConnexion}>Se connecter</span>
-                                        </div>
+                                       
+                                       !userData ?
+                                        (
+                                            <div  className="header_info_right_connexion" >
+                                                <span onClick={handleShowConnexion}>Se connecter</span>
+                                            </div>
+                                        )
                                         :
-                                        <div  className="header_info_right_connexion" >
-                                            <div className="prenom">Bienvenue {userData.prenom}</div>
-                                            <span onClick={handleDisconnect}>Deconnexion</span>
-                                        </div>
+                                        (
+                                            <div  className="header_info_right_connexion" >
+                                                <div className="prenom">Bienvenue {userData.prenom}</div>
+                                                <span onClick={handleDisconnect}>Deconnexion</span>
+                                            </div>
+                                        )
+
                                         
                     }
 
@@ -272,7 +282,7 @@ export default function Header() {
                     <div className="trait_header"></div>
                     <Link to="/panier" className="panier_header">
                         <AiOutlineShoppingCart/>
-                        <p>1</p>
+                        <p>{userData && userData.panier ? userData.panier.length : ""}</p>
                     </Link>
                 </div> 
             </div>
