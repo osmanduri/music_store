@@ -8,13 +8,19 @@ import axios from 'axios'
 export default function PanierUser({element, updateQuantite, setUpdateQuantite}) {
     const [instrument, setInstrument] = useState({})
     useEffect(() => {
+        let price = [];
         async function fetchInstrumentPanier(){
             await axios.get(`${process.env.REACT_APP_BASE_URL}/api/${element.instrument}/${element.id}`)
             .then((res) => {
                 setInstrument(res.data)
+                price.push(res.data.prix)
+
+                
             })
             .catch(err => console.log(err))
         }
+
+        
 
         fetchInstrumentPanier();
     },[])
@@ -28,6 +34,7 @@ export default function PanierUser({element, updateQuantite, setUpdateQuantite})
             await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/panier/incrementer/${data._id}`, payload)
             .then((res) => {
                 setUpdateQuantite(!updateQuantite)
+                localStorage.setItem('storage-userData', JSON.stringify(res.data))
             })
             .catch(err => console.log(err))
         }
@@ -42,6 +49,7 @@ export default function PanierUser({element, updateQuantite, setUpdateQuantite})
             await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/panier/decrementer/${data._id}`, payload)
             .then((res) => {
                 setUpdateQuantite(!updateQuantite)
+                localStorage.setItem('storage-userData', JSON.stringify(res.data))
             })
             .catch(err => console.log(err))
         }
@@ -57,6 +65,7 @@ export default function PanierUser({element, updateQuantite, setUpdateQuantite})
             await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/panier/remove/${data._id}`, payload)
             .then((res) => {
                 setUpdateQuantite(!updateQuantite)
+                localStorage.setItem('storage-userData', JSON.stringify(res.data))
             })
             .catch(err => console.log(err))
         }

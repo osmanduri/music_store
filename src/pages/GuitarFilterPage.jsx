@@ -9,6 +9,9 @@ import CardsHomePromotion from '../components/Home/CardsHomePromotion'
 import axios from 'axios'
 import data from '../data/cards_home_promotion';
 
+
+
+
 export default function GuitarFilterPage() {
     const [guitarData, setGuitarData] = useState([])
     const [categorieStratocaster, setCategorieStratocaster] = useState('')
@@ -17,7 +20,6 @@ export default function GuitarFilterPage() {
         async function fetchAllGuitar(){
             await axios.get('http://localhost:5000/api/guitare')
             .then((res) => {
-                console.log(res.data)
                 setGuitarData(res.data)
             })
             .catch(err => console.log(err))
@@ -50,7 +52,6 @@ export default function GuitarFilterPage() {
                 }
                 </div>
             </div>
-
         </div>
     )
 }

@@ -135,7 +135,7 @@ export default function SingleIntrument() {
                 <div className='quantite'>
                     <p>Quantité: </p>
                     <i onClick={quantiteDecrease}><AiFillMinusCircle/></i>
-                    <input type="number" placeholder='' value={quantiteValue} id="quantite"/>
+                        <input type="number" placeholder='' value={quantiteValue} id="quantite"/>
                     <i onClick={quantiteIncrease}><AiFillPlusCircle/></i>
                 </div>
                 <div className='ajouter_panier_single_instrument'>

@@ -1,0 +1,108 @@
+.modal_view_product{
+    display: flex;
+    justify-content: space-between;
+    //position: relative;
+    height: 100%;
+    >.modal_view_product_img{
+        position: relative;
+        >img{
+            width: 300px;
+            height: 320px;
+            object-fit: cover;
+        }
+        >.chevron_left{
+            position: absolute;
+            top: 145px;
+            font-size: 32px;
+            cursor: pointer;
+        }
+        >.chevron_right{
+            position: absolute;
+            top: 145px;
+            right: 0px;
+            font-size: 32px;
+            cursor: pointer;
+        }
+    }
+    >.modal_view_product_details{
+        width: 300px;
+        >h2{
+            color: white;
+        }
+        >.modal_view_product_details_product{
+            font-size: 16px;
+            color: white;
+            >p{
+                margin-top: 10px;
+                >span{
+                    color: rgb(138, 138, 138);
+                    margin-left: 5px;
+                }
+            }
+
+            >.quantite {
+                display: flex;
+                align-items: center;
+                margin-top: 42px;
+                >p {
+                    color: rgb(138, 138, 138);
+                    font-size: 20px;
+                }
+                >i {
+                    color: white;
+                    cursor: pointer;
+                    margin-left: 10px;
+                }
+                >input {
+                    background: transparent;
+                    border: none;
+                    border: 1px solid white;
+                    width: 40px;
+                    height: 30px;
+                    //caret-color: transparent;
+                    outline: none;
+                    color: white;
+                    padding-left: 13px;
+                    margin-left: 10px;
+                }
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    /* display: none; <- Crashes Chrome on hover */
+                    -webkit-appearance: none;
+                    margin: 0;
+                    /* <-- Apparently some margin are still there even though it's hidden */
+                }
+                input[type=number] {
+                    -moz-appearance: textfield;
+                    /* Firefox */
+                }
+            }
+
+            >.modal_prix{
+                >span{
+                    font-size: 25px;
+                    color: #fe7600;
+                    margin: 0px;
+                }
+            }
+
+            >.ajouter_panier_single_instrument{
+                display: flex;
+                justify-content: flex-start;
+                margin-top: 20px;
+            }
+        }
+    }
+
+    >button{
+        position: absolute;
+        background: transparent;
+        border:none;
+        right: 15px;
+        top:10px;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+}

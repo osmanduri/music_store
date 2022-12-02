@@ -7,24 +7,29 @@ export default function Panier() {
     const [panier, setPanier] = useState([])
     const [updateQuantite, setUpdateQuantite] = useState(false)
     const {userData, setUserData} = useContext(UserContext);
+    const [totalPrice, setTotalPrice] = useState()
     useEffect(() => {
+        let somme = 0;
         const data = JSON.parse(localStorage.getItem('storage-userData'));
         async function fetchUser(){
             await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/${data._id}`)
             .then((res) => {
                 setPanier(res.data.panier)
                 setUserData(res.data)
+                localStorage.setItem('storage-userData', JSON.stringify(res.data))
 
             })
             .catch(err => console.log(err))
         }
 
         fetchUser();
-        
 
-        /*if(data){
-            setPanier(JSON.parse(data).panier)
-        }*/
+        //Calcul de la somme total
+        data.panier.forEach(element => {
+            somme = somme + (element.prix * element.quantite)
+        })
+
+        setTotalPrice(somme)
 
     }, [updateQuantite])
     return (
@@ -55,13 +60,16 @@ export default function Panier() {
                     <tr>
                         <td id="produit" colSpan="3"></td>
                         <td id="prix_unitaire" colSpan="3">Total Produits</td>
-                        <td id="prix_final"><p>3200£</p></td>
+                        <td id="prix_final"><p>{totalPrice} €</p></td>
                     </tr>
                 </tfoot>
             </table> 
             :
             <div className="panier_vide">
                 <h2>Votre panier</h2>
+                <div className="panier_vide_desc">
+                <p>Votre panier est vide</p>
+                </div>
             </div>
             }
         </div>

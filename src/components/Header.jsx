@@ -12,6 +12,7 @@ import { AiFillLock } from "@react-icons/all-files/ai/AiFillLock";
 import { AiFillEyeInvisible } from "@react-icons/all-files/ai/AiFillEyeInvisible";
 import { AiFillEye } from "@react-icons/all-files/ai/AiFillEye";
 import axios from 'axios';
+import isEmail from 'validator/lib/isEmail';
 
 import { Link, NavLink } from 'react-router-dom';
 
@@ -28,13 +29,21 @@ export default function Header() {
     const {userData, setUserData} = useContext(UserContext);
     const cookies = new Cookies();
     const [errorPassword, setErrorPassword] = useState('')
+    
     const login = useRef(null)
     const password = useRef(null)
+    const confirmPassword = useRef(null)
+    const prenom = useRef(null)
+    const nom = useRef(null)
+    const email = useRef(null)
+    
+
+
+
     useEffect(() =>{
         const data = localStorage.getItem('storage-userData');
         if(data){
             setUserData(JSON.parse(data))
-            console.log(JSON.parse(data))
         }else{
             setUserData(null)
         }
@@ -133,6 +142,64 @@ export default function Header() {
             break;
         }
     }
+
+    const handleAccountCreation = () => {
+        if(nom.current.value && prenom.current.value && email.current.value && password.current.value && confirmPassword.current.value)
+        {
+            if(isEmail(email.current.value)){
+                const email_id = document.getElementById('email_creation')
+                email_id.style.borderColor = "#535558";
+
+                const erreur_email_creation = document.getElementById('erreur_email_creation')
+                erreur_email_creation.style.display = "none"
+            if(password.current.value !== confirmPassword.current.value){
+                const erreur_account_creation = document.getElementById('erreur_account_creation')
+                erreur_account_creation.innerHTML = "Les mots de passe ne correspondent pas !"
+                erreur_account_creation.style.color = "red"
+            }else{
+                const payload = {
+                    nom: nom.current.value,
+                    prenom: prenom.current.value,
+                    email: email.current.value,
+                    password: password.current.value
+                }
+                axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/add`, payload)
+                .then((res) => {
+                    if(res.data){
+                        const erreur_account_creation = document.getElementById('erreur_account_creation')
+                        erreur_account_creation.innerHTML = "Compte crée avec succès !"
+                        erreur_account_creation.style.color = "green"
+                        
+                        nom.current.value = ""
+                        prenom.current.value = ""
+                        email.current.value = ""
+                        password.current.value = ""
+                        confirmPassword.current.value = ""
+                    }
+                })
+                .catch((err) => {
+                    console.log(err.response)
+                })
+            }
+
+            }else{
+                const email_id = document.getElementById('email_creation')
+                email_id.style.borderColor = "red";
+
+                const erreur_email_creation = document.getElementById('erreur_email_creation')
+                erreur_email_creation.style.display = "block"
+
+                const erreur_account_creation = document.getElementById('erreur_account_creation')
+                erreur_account_creation.innerHTML = ""
+                erreur_account_creation.style.color = "green"
+            }
+
+        }else{
+            const erreur_account_creation = document.getElementById('erreur_account_creation')
+            erreur_account_creation.innerHTML = "Veuillez remplir tout les champs"
+            erreur_account_creation.style.color = "red"
+        }
+    }
     return (
         <div className="header">
             <div className="header_inside container_header">
@@ -219,19 +286,20 @@ export default function Header() {
                                             <strong>Creation de compte</strong>
                                             <div className="create_account_input">
                                                 <label>Prénom</label>
-                                                <input type="text"/>
+                                                <input type="text" ref={prenom} />
                                             </div>
                                             <div className="create_account_input">
                                                 <label>Nom</label>
-                                                <input type="text"/>
+                                                <input type="text" ref={nom} />
                                             </div>
                                             <div className="create_account_input">
                                                 <label>Email</label>
-                                                <input type="text"/>
+                                                <input type="text" ref={email} id="email_creation"/>
+                                                <p className="erreur_email_creation_compte" id="erreur_email_creation">Format du mail invalide</p>
                                             </div>
                                             <div className="mot_de_passe">
                                             <label>Mot de passe</label>
-                                            <input type={eyeVisible ? "password" : "text"}/>
+                                            <input type={eyeVisible ? "password" : "text"} ref={password}/>
                                             <i onClick={handleShowEye}>
                                                 {
                                                     eyeVisible ? <AiFillEye/> : <AiFillEyeInvisible/>
@@ -241,7 +309,7 @@ export default function Header() {
                                             </div>
                                             <div className="mot_de_passe">
                                             <label>Confirmation du mot de passe</label>
-                                            <input type={eyeVisible ? "password" : "text"}/>
+                                            <input type={eyeVisible ? "password" : "text"} ref={confirmPassword}/>
                                             <i onClick={handleShowEye}>
                                                 {
                                                     eyeVisible ? <AiFillEye/> : <AiFillEyeInvisible/>
@@ -250,8 +318,9 @@ export default function Header() {
                                             </i>
                                             </div>
                                             <div className="connect_or_create_account">
-                                            <span onClick={() => console.log('compte creation !')}>Enregistrer</span>
+                                            <span onClick={handleAccountCreation}>Enregistrer</span>
                                             <span onClick={() => handleSwitchConnectCreatePasswordReset('connect')}>Se Connecter</span>
+                                            <p className="erreur_message_account_creation" id="erreur_account_creation"></p>
                                             </div>
                                             
 
