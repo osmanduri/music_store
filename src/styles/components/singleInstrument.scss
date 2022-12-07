@@ -35,16 +35,15 @@
                 color: rgb(138, 138, 138);
                 top: 290px;
                 left: 0px;
-                z-index: 999;
                 font-size: 50px;
                 cursor: pointer;
+                z-index: 2;
             }
             >.chevron_right {
                 position: absolute;
                 color: rgb(138, 138, 138);
                 top: 290px;
                 right: 0px;
-                z-index: 999;
                 font-size: 50px;
                 cursor: pointer;
             }
@@ -58,6 +57,9 @@
                     cursor: pointer;
                     object-fit:contain;
                     background: white;
+                }
+                >#img0{
+                    margin-left: 0;
                 }
             }
         }

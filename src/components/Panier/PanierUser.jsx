@@ -8,20 +8,15 @@ import axios from 'axios'
 export default function PanierUser({element, updateQuantite, setUpdateQuantite}) {
     const [instrument, setInstrument] = useState({})
     useEffect(() => {
-        let price = [];
+        window.scrollTo(0, 0)
         async function fetchInstrumentPanier(){
             await axios.get(`${process.env.REACT_APP_BASE_URL}/api/${element.instrument}/${element.id}`)
             .then((res) => {
-                setInstrument(res.data)
-                price.push(res.data.prix)
-
-                
+                setInstrument(res.data)                
             })
             .catch(err => console.log(err))
         }
-
         
-
         fetchInstrumentPanier();
     },[])
 

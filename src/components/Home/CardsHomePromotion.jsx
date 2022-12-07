@@ -1,5 +1,4 @@
 import React, {useState, useContext} from 'react'
-import clavier from '../../images/cards_home_promotion/clavier.webp'
 import eyes from '../../images/cards_home_promotion/eyes.png'
 import detail_product from '../../images/cards_home_promotion/details_product.png'
 import axios from 'axios'
@@ -9,8 +8,11 @@ import { AiFillPlusCircle } from "@react-icons/all-files/ai/AiFillPlusCircle";
 import { AiFillMinusCircle } from "@react-icons/all-files/ai/AiFillMinusCircle";
 import { HiChevronLeft } from "@react-icons/all-files/hi/HiChevronLeft";
 import { HiChevronRight } from "@react-icons/all-files/hi/HiChevronRight";
+import { FcCheckmark } from "@react-icons/all-files/fc/FcCheckmark"
+import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart"
 import AjouterPanier from './Utils/AjouterPanier'
 import { Link } from 'react-router-dom'
+
 
 const customStyles = {
     content: {
@@ -22,7 +24,31 @@ const customStyles = {
       transform: 'translate(-50%, -50%)',
       backgroundColor:"#10131c",
       width:"740px",
-      height:"650px",
+      height:"600px",
+      boxShadow: "0px 1px 3px #fe7600",
+      border:"none",
+      zIndex:"999",
+      padding:"40px"
+      
+      
+    },
+    overlay:{
+        backgroundColor:"rgb(0,0,0, 0.2)",
+        
+    }
+  };
+
+  const customStylesAfterAdd = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor:"#10131c",
+      width:"450px",
+      height:"625px",
       boxShadow: "0px 1px 3px #fe7600",
       border:"none",
       zIndex:"999",
@@ -42,16 +68,35 @@ export default function CardsHomePromotion({element, id}) {
     const {userData, setUserData} = useContext(UserContext);
     const [quantiteValue, setQuantiteValue] = useState(1)
     const [valuePicture, setValuePicture] = useState(1)
-    let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalIsOpenProductAdded, modalSetIsOpenProductAdded] = useState(false)
+    const [totalPanier, setTotalPanier] = useState(0)
   
     function openModal() {
       setIsOpen(true);
     }
+
+
+    function closeModalProductAdded(){
+        modalSetIsOpenProductAdded(false);
+    }
+
+    function afterOpenModalProductAdded(){
+        let somme = 0;
+
+        userData.panier.forEach(element => {
+            somme = somme + (element.prix * element.quantite)
+        })
+
+        setTotalPanier(somme)
+
+    }
+
+
   
     function afterOpenModal() {
       // references are now sync'd and can be accessed.
-      subtitle.style.color = 'white';
+       
     }
   
     function closeModal() {
@@ -78,11 +123,14 @@ export default function CardsHomePromotion({element, id}) {
             prix:element.prix,
             quantite: quantiteValue
         }
+
         if(data){
             await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/panier/add/${data._id}`, payload)
             .then((res) => {
                 localStorage.setItem('storage-userData', JSON.stringify(res.data))
                 setUserData(res.data)
+                setIsOpen(false)
+                modalSetIsOpenProductAdded(true)
             })
             .catch((err) => console.log(err))
         }else{
@@ -126,7 +174,7 @@ export default function CardsHomePromotion({element, id}) {
             setValuePicture(4)
         }
     }
-
+    
     return (
         <div className='card_home_promotion'>
             <div className="card_home_promotion_inside" onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -187,7 +235,7 @@ export default function CardsHomePromotion({element, id}) {
                             <div className='quantite'>
                                 <p>Quantité: </p>
                                 <i onClick={quantiteDecrease}><AiFillMinusCircle/></i>
-                                    <input type="number" placeholder='' value={quantiteValue} id="quantite"/>
+                                    <input type="number" placeholder='' value={quantiteValue} onChange={null} id="quantite"/>
                                 <i onClick={quantiteIncrease}><AiFillPlusCircle/></i>
                             </div>
                             <div className='ajouter_panier_single_instrument'>
@@ -196,6 +244,51 @@ export default function CardsHomePromotion({element, id}) {
                         </div>
                     </div>
                     <button onClick={closeModal}>X</button>
+                </div>
+            </Modal>
+            <Modal
+                isOpen={modalIsOpenProductAdded}
+                onAfterOpen={afterOpenModalProductAdded}
+                onRequestClose={closeModalProductAdded}
+                style={customStylesAfterAdd}
+                contentLabel="View product"
+                closeTimeoutMS={400}
+                openTimeoutMS={400}
+                >
+                <div className="modal_view_product_produit_ajouter">
+                <div className="produit_ajoute_succes">
+                    <i><FcCheckmark/></i>
+                    <h2>Produit ajouté au panier avec succès</h2>
+                </div>
+                <div className="img_details">
+                    <img src={require('../../images/' + element.chemin_image + "/" + `${valuePicture}.` + element.format_image)} alt="product"></img>
+                    <div className="img_details_p">
+                        <h3>{element.model}</h3>
+                        <div className="marque_categorie">
+                            <p>Marque: <span>{element.marque}</span></p>
+                            <p>Type: <span>{element.categorie}</span></p>
+                        </div>
+                        <div className="trait_horizontale"/>
+                        <div className="quantite_total">
+                            <p>Quantite:  <span>{quantiteValue}</span></p>
+                            <p>Total: <span>{quantiteValue * element.prix} €</span></p>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="nombre_produit_panier">
+                    <i><AiOutlineShoppingCart/></i>
+                    <h2>IL Y A {userData && userData.panier ? userData.panier.length : ""} PRODUITS DANS VOTRE PANIER.</h2>
+                </div>
+                <div className="details_panier_inside">
+                    <p>Frais de port: <span>Livraison gratuite !</span></p>
+                    <p>Total Panier:  <span>{totalPanier} €</span></p>
+                </div>
+                <div className="commander_continuer_mes_achats">
+                    <button onClick={closeModalProductAdded}>Continuer mes achats</button>
+                    <Link to="/panier">Commander</Link>
+                </div>
+                    <p className="cross_exist" onClick={closeModalProductAdded}>X</p>
                 </div>
             </Modal>
             
