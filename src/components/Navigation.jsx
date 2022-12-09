@@ -9,10 +9,10 @@ export default function Navigation() {
                 <div className='navigation_right'>
                 <ul>
                     <NavLink to="/guitare" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Guitares<li></li></NavLink>
-                    <NavLink to="/clavier" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Clavier</NavLink>
-                    <NavLink to="/microphone" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Microphones</NavLink>
-                    <NavLink to="/home_studio" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Home Studio</NavLink>
-                    <NavLink to="/accessoire" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Accessoires</NavLink>
+                    <NavLink to="/clavier" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Claviers / Pianos<li></li></NavLink>
+                    <NavLink to="/microphone" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Microphones<li></li></NavLink>
+                    <NavLink to="/home_studio" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Home Studio<li></li></NavLink>
+                    <NavLink to="/accessoire" className={({isActive}) => isActive ? "navActive" : "cool-link"}>Accessoires<li></li></NavLink>
                 </ul>
                 </div>
             </div>

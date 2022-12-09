@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import Modal from 'react-modal';
 import { FcCheckmark } from "@react-icons/all-files/fc/FcCheckmark"
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart"
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -58,6 +58,7 @@ const customStylesAfterAdd = {
 
 export default function SingleIntrument() {
     const url_id = useParams()
+    const location = useLocation()
 
     const [quantiteValue, setQuantiteValue] = useState(1)
     const [valuePicture, setValuePicture] = useState(0)
@@ -71,11 +72,12 @@ export default function SingleIntrument() {
 
     useEffect(() => {
         window.scrollTo(0, 0)
+        const instrument = location.pathname.split('/')[1]
+        
         const fetchGuitarById = () => {
-            axios.get(`http://localhost:5000/api/guitare/${url_id.id}`)
+            axios.get(`http://localhost:5000/api/${instrument}/${url_id.id}`)
             .then((res) => {
                 setSingleInstrument(res.data)
-                console.log(res.data.img.length)
             })
             .catch(err => {
                 console.log(err)
@@ -163,7 +165,7 @@ export default function SingleIntrument() {
             <div className='single_instrument_inside'>
             <div className="single_instrument_inside_img">
                 <div onClick={handleSliderPictureDecrease} className="chevron_left"><HiChevronLeft/></div>
-                {(singleIntrument.chemin_image && singleIntrument.format_image) && <img src={require(`../images/${singleIntrument.img[valuePicture]}`)} alt="logo"/>}
+                {singleIntrument.img && <img src={require(`../images/${singleIntrument.img[valuePicture]}`)} alt="logo"/>}
                 <div onClick={handleSliderPictureIncrease} className="chevron_right"><HiChevronRight/></div>
                 {
                                 
@@ -187,27 +189,27 @@ export default function SingleIntrument() {
                 
                 <h1>{singleIntrument.model}</h1>
             <div className='liste_caracteristique'>
-                <p>Marque:  <span>{singleIntrument.marque}</span></p>
-                <p>Type:  <span>{singleIntrument.type}</span></p>
-                <p>Categorie:  <span>{singleIntrument.categorie}</span></p>
-                <p>Fabrication:  <span>{singleIntrument.fabrique}</span></p>
-                <p>Annee:  <span>{singleIntrument.annee}</span></p>
-                <p>Nombre de corde:   <span>{singleIntrument.nb_cordes}</span></p>
-                <p>Orientation:  <span>{singleIntrument.orientation}</span></p>
-                <p>Poid: <span>{singleIntrument.poid} kg</span></p>
-                <p>Nombre de frettes:  <span>{singleIntrument.nb_frettes}</span></p>
+                { singleIntrument.marque && <p>Marque:  <span>{singleIntrument.marque}</span></p> }
+                { singleIntrument.type && <p>Type:  <span>{singleIntrument.type}</span></p> }
+                { singleIntrument.categorie && <p>Categorie:  <span>{singleIntrument.categorie}</span></p> }
+                { singleIntrument.fabrique && <p>Fabrication:  <span>{singleIntrument.fabrique}</span></p> }
+                { singleIntrument.annee && <p>Annee:  <span>{singleIntrument.annee}</span></p> }
+                
+                    { singleIntrument.nb_cordes && <p>Nombre de corde:   <span>{singleIntrument.nb_cordes}</span></p> }
+                    { singleIntrument.orientation && <p>Orientation:  <span>{singleIntrument.orientation}</span></p> }
+                    { singleIntrument.nb_frettes && <p>Nombre de frettes:  <span>{singleIntrument.nb_frettes}</span></p> }
+                
+                { singleIntrument.poid && <p>Poid: <span>{singleIntrument.poid} kg</span></p> }
+                { singleIntrument.connecteur && <p>Connecteur: <span>{singleIntrument.connecteur}</span></p> }
+                { singleIntrument.nb_touche && <p>Nombre de touche: <span>{singleIntrument.nb_touche}</span></p> }
+                { singleIntrument.toucher && <p>Toucher: <span>{singleIntrument.toucher}</span></p> }
+                
                 <div className='trait_horizontale' style={{marginTop:"30px"}}/>
                 <div className='prix'>{singleIntrument.prix} €</div>
                 <div className='trait_horizontale' style={{marginTop:"30px"}}/>
                 <div className='guitare_size'>
-                <p>Keyboard Material:</p>
-                <select>
-                            <option value="aze" selected disabled hidden>Toutes Categories</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Four</option>
-                </select>
+                    <h4>Description:</h4>
+                    <p>{singleIntrument.description}</p>
                 </div>
                 <div className='quantite'>
                     <p>Quantité: </p>

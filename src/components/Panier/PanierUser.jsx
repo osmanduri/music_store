@@ -16,7 +16,7 @@ export default function PanierUser({element, updateQuantite, setUpdateQuantite})
             })
             .catch(err => console.log(err))
         }
-        
+
         fetchInstrumentPanier();
     },[])
 
@@ -70,9 +70,15 @@ export default function PanierUser({element, updateQuantite, setUpdateQuantite})
             <tr>
                 <td id="produit_td">
                     {
-                        instrument.type === "Guitare electrique" && 
+                        instrument.instrument === "guitare" && 
                             <Link to={`/${element.instrument}/${element.id}`}>
-                                {<img src={require('../../images/' + instrument.chemin_image + "/" + "1." + instrument.format_image)} alt="guitar"/>}
+                                <img src={require(`../../images/${instrument.img[0]}`)} alt="logo"/>
+                            </Link>
+                    }
+                    {
+                        instrument.instrument === "clavier" && 
+                            <Link to={`/${element.instrument}/${element.id}`}>
+                                <img src={require(`../../images/${instrument.img[0]}`)} alt="logo"/>
                             </Link>
                     }
 

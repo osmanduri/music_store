@@ -67,7 +67,7 @@ const customStyles = {
 export default function CardsHomePromotion({element, id}) {
     const {userData, setUserData} = useContext(UserContext);
     const [quantiteValue, setQuantiteValue] = useState(1)
-    const [valuePicture, setValuePicture] = useState(1)
+    const [valuePicture, setValuePicture] = useState(0)
     const [modalIsOpen, setIsOpen] = useState(false);
     const [modalIsOpenProductAdded, modalSetIsOpenProductAdded] = useState(false)
     const [totalPanier, setTotalPanier] = useState(0)
@@ -154,24 +154,20 @@ export default function CardsHomePromotion({element, id}) {
     }
 
     const handleSliderPictureIncrease = () => {
-        console.log(valuePicture)
-        if(valuePicture < 4){
+        if(valuePicture < element.img.length){
             setValuePicture(valuePicture => valuePicture + 1)
         }
 
-        if(valuePicture === 4){
-            setValuePicture(1)
+        if(valuePicture === element.img.length - 1){
+            setValuePicture(0)
         }
     }
 
     const handleSliderPictureDecrease = () => {
-        console.log(valuePicture)
-        if(valuePicture > 1){
+        if(valuePicture > 0){
             setValuePicture(valuePicture => valuePicture - 1)
-        }
-
-        if(valuePicture === 1){
-            setValuePicture(4)
+        }else{
+            setValuePicture(element.img.length - 1)
         }
     }
     
@@ -183,7 +179,7 @@ export default function CardsHomePromotion({element, id}) {
                 {element.new && <h3>Nouveau</h3>}
                 {element.promo && <span>Promo !</span>}
                 </div>
-                <img src={require('../../images/' + element.chemin_image + "/" + "1." + element.format_image)} alt="clavier"/>
+                <img src={require('../../images/' + element.img[0])} alt="clavier"/>
                 <div className='cards_home_promotion_inside_price'>
                     <div className='cards_home_promotion_inside_price_inside' >
                         <p>{"Prix: " + element.prix} €</p><br/>
@@ -216,7 +212,7 @@ export default function CardsHomePromotion({element, id}) {
                 <div className="modal_view_product">
                     <div className="modal_view_product_img">
                         <div onClick={handleSliderPictureDecrease} className="chevron_left"><HiChevronLeft/></div>
-                            <img src={require('../../images/' + element.chemin_image + "/" + `${valuePicture}.` + element.format_image)} alt="product"></img>
+                        {element.img && <img src={require(`../../images/${element.img[valuePicture]}`)} alt="logo"/>}
                         <div onClick={handleSliderPictureIncrease} className="chevron_right"><HiChevronRight/></div>
                     </div>
                     <div className="modal_view_product_details">
@@ -261,7 +257,7 @@ export default function CardsHomePromotion({element, id}) {
                     <h2>Produit ajouté au panier avec succès</h2>
                 </div>
                 <div className="img_details">
-                    <img src={require('../../images/' + element.chemin_image + "/" + `${valuePicture}.` + element.format_image)} alt="product"></img>
+                {element.img && <img src={require(`../../images/${element.img[0]}`)} alt="logo"/>}
                     <div className="img_details_p">
                         <h3>{element.model}</h3>
                         <div className="marque_categorie">
@@ -281,7 +277,7 @@ export default function CardsHomePromotion({element, id}) {
                     <h2>IL Y A {userData && userData.panier ? userData.panier.length : ""} PRODUITS DANS VOTRE PANIER.</h2>
                 </div>
                 <div className="details_panier_inside">
-                    <p>Frais de port: <span>Livraison gratuite !</span></p>
+                    <p>Frais de port: <span>{totalPanier > 89 ? "Livraison gratuite !" : "5.99 €"} </span></p>
                     <p>Total Panier:  <span>{totalPanier} €</span></p>
                 </div>
                 <div className="commander_continuer_mes_achats">

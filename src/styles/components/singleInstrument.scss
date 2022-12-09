@@ -122,24 +122,26 @@
                     }
                 }
                 >.guitare_size {
-                    display: flex;
-                    align-items: center;
                     margin-top: 30px;
                     >p {
                         color: rgb(138, 138, 138);
+                        font-size: 18px;
+                        opacity: 0.9;
+                    }
+                    >h4{
+                        text-align: left;
+                        color: white;
                         font-size: 20px;
+                        font-weight: 500;
                     }
-                    >select {
-                        margin-left: 20px;
-                        height: 40px;
-                    }
+
                 }
                 >.quantite {
                     display: flex;
                     align-items: center;
                     margin-top: 30px;
                     >p {
-                        color: rgb(138, 138, 138);
+                        color: white;
                         font-size: 20px;
                     }
                     >i {

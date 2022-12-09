@@ -59,9 +59,15 @@ export default function Panier() {
                 <tfoot>
                     <tr>
                         <td id="produit" colSpan="3"></td>
-                        <td id="prix_unitaire" colSpan="3">Total Produits</td>
-                        <td id="prix_final"><p>{totalPrice} €</p></td>
+                        <td id="prix_unitaire" colSpan="3">Frais de port (Livraison gratuide à partir de 89€ !)</td>
+                        <td id="prix_final"><p>{totalPrice > 89 ? "0" : "5.99"} €</p></td>
                     </tr>
+                    <tr>
+                        <td id="produit" colSpan="3"></td>
+                        <td id="prix_unitaire" colSpan="3">Total Produits</td>
+                        <td id="prix_final"><p>{totalPrice > 89 ? totalPrice : Math.round((totalPrice + 5.99) * 100) / 100} €</p></td>
+                    </tr>
+
                 </tfoot>
             </table> 
             :
